@@ -1,0 +1,50 @@
+ 
+ ..token 
+ const result = await user.save();
+    Jwt.sign({result}, jwtKey, {expiresIn:"2h"}, (err , token)=>{
+            if(err) {
+                res.send({result:'something went wrong pls try after sometime'})  
+            }
+             res.send({result , auth:token})
+          })   
+
+
+
+...................................................................................................
+       ............................. function varify......................................  
+function verifyToken(req , res , next){
+    let token = req.headers['authorization'];
+
+    if(token) {
+        token = token.split(' ')[1];
+        Jwt.verify(token , jwtKey , (err , valid)=>{
+            if(err) {
+                res.status(401).send({result:"pls provide valid token"})
+            }
+            else {
+                next()
+            }
+        })
+
+    }else{
+
+        res.status(403).send({result:"pls add token with header"})
+
+    }
+   
+}                         4:10mmmm
+.............................................................................................
+check in login page
+if (...user.... model wala) {
+          Jwt.sign({user}, jwtKey, {expiresIn:"2h"}, (err , token)=>{
+            if(err) {
+                res.send({result:'something went wrong pls try after sometime'})  
+            }
+             res.send({user , auth:token})
+          }) 
+        } else {
+         res.send({result:'No User found'})
+        }
+    } else {
+        res.send({result:'No User found'})
+    }
