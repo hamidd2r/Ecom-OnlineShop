@@ -19,7 +19,7 @@ const router = express.Router()
 
 
 
-router.route('/products').get(isAuthenticatedUser ,getAllProduct)
+router.route('/products').get(getAllProduct)
 
 router
   .route("/admin/product/new")
