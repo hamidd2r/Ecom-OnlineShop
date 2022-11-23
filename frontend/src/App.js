@@ -5,6 +5,8 @@ import WebFont from 'webfontloader'
 import { useEffect } from 'react';
 import Footer from './component/layout/Footer/Footer';
 import Home from './component/Home/Home.js';
+import ProductDetails from './component/Product/ProductDetails.js';
+import Products from './component/Product/Products.js';
 
 function App() {
 
@@ -24,6 +26,8 @@ function App() {
   
   
    <Route path='/' element={<Home/>}></Route>
+   <Route path='/product/:id' element={<ProductDetails/>}></Route>
+   <Route path='/products' element={<Products/>}></Route>
  
    
    </Routes>

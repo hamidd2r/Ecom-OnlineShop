@@ -4,7 +4,7 @@ import ReactStars from 'react-rating-stars-component'
 
 
 
-const Product = ({product}) => {
+const ProductCard = ({product}) => {
   
 const options = {
   edit:false,
@@ -15,7 +15,7 @@ const options = {
 }
   return (
     <>
-<Link className='productCard' to={product._id}>
+<Link className='productCard' to={`/product/${product._id}`}>
 
 <img src={product.images} alt={product.name}/>
 
@@ -34,4 +34,4 @@ const options = {
   )
 }
 
-export default Product
+export default ProductCard

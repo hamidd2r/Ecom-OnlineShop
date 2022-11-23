@@ -12,7 +12,8 @@ const {
 const {
   isAuthenticatedUser,
   authorizedRoles,
-  verifyToken
+  verifyToken,
+
 } = require('../middleware/auth')
 
 const router = express.Router()
@@ -23,19 +24,19 @@ router.route('/products').get(getAllProduct)
 
 router
   .route("/admin/product/new")
-  .post(isAuthenticatedUser, createProduct);
+  .post( createProduct);
 
-router.route('/admin/product/:id').put(updateProduct, isAuthenticatedUser, authorizedRoles("admin"), isAuthenticatedUser) //isAuthenticatedUser ,authorizedRoles("admin"),
+router.route('/admin/product/:id').put(verifyToken, updateProduct) //isAuthenticatedUser ,authorizedRoles("admin"),
 
-router.route('/admin/product/:id').delete(deleteProduct) //isAuthenticatedUser ,authorizedRoles("admin"),
+router.route('/admin/product/:id').delete(verifyToken, deleteProduct) //isAuthenticatedUser ,authorizedRoles("admin"),
 
 router.route('/product/:id').get(getProductDetails)
 
-router.route('/review').put(createProductReview) //isAuthenticatedUser,
+router.route('/review').put(verifyToken, createProductReview) //isAuthenticatedUser,
 
-router.route('/reviews').get(getProductReviews)
+router.route('/reviews').get(verifyToken, getProductReviews)
 
-router.route('/reviews/:id').delete(deleteReview) //isAuthenticatedUser ,
+router.route('/reviews/:id').delete(verifyToken, deleteReview) //isAuthenticatedUser ,
 
 
 

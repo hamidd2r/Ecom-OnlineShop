@@ -1,9 +1,9 @@
 import React, { Fragment, useEffect } from "react";
-import Product from './Product.js'
+import Product from './ProductCard.js'
 import "./Home.css";
-
+import { useAlert } from "react-alert";
 import MetaData from "../layout/MetaData";
-import {getProduct} from '../../actions/productAction'
+import {clearErrors, getProduct} from '../../actions/productAction'
 import { useSelector , useDispatch} from 'react-redux'
 import Loader from "../layout/Loader/Loader.js";
  
@@ -15,16 +15,17 @@ const Home = () => {
   );
 
   useEffect(() => {
+    if(error) {
+      alert.error(error)
+      dispatch(clearErrors)
+  }
 
     dispatch(getProduct());
   },[dispatch]);
 
   return (
    
-<Fragment>
-  {loading ? <Loader/>
-  
-   :      <Fragment>
+     <>
 <MetaData title= "Ecommerce" />
 <div className="banner">
             <p>Ecommerce</p>
@@ -43,8 +44,7 @@ const Home = () => {
           ))
          }
           </div>
-   </Fragment>}
-</Fragment>
+   </>
   )
 }
 
