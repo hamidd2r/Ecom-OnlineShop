@@ -23,6 +23,8 @@ export const productsReducer = (state = {
         loading: false,
           products: action.payload.products,
           productsCount: action.payload.productsCount,
+          resultPerPage:action.payload.resultPerPage,
+          filterProductsCount:action.payload.filterProductsCount,
 
       };
 

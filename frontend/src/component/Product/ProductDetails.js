@@ -7,8 +7,9 @@ import { useParams } from "react-router-dom";
 import "./ProductDetails.css";
 import ReviewCard from "./ReviewCard";
 import { useAlert } from "react-alert";
+import MetaData from "../layout/MetaData";
 
-
+ 
 const ProductDetails = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
@@ -38,6 +39,7 @@ const ProductDetails = () => {
   };
   return (
     <>
+    <MetaData title={`${product.name} -- E-COM`}/>
       <div className="ProductDetails">
         <div>
           {/* <Carousel>
