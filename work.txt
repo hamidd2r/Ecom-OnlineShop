@@ -1,3 +1,62 @@
 cd...........E-commerce    nodemon server.js ............. backend
 
  // "proxy":"http://10.5.48.27:4000"
+ ..............................................................................................................................
+ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
+  const user = new User(req.body)
+
+  User.findOne({
+    email: req.body.email,
+  }).exec((error, user) => {
+    if (user)
+      return res.status(400).json({
+        message: "user already registered",
+      });
+
+  }) 
+
+  const result = await user.save();
+
+  Jwt.sign({
+    result
+  }, jwtKey, {
+    expiresIn: "2h"
+  }, (err, token) => {
+    if (err) {
+      res.send({
+        result: 'something went wrong pls try after sometime'
+      })
+    }
+    res.send({
+      result,
+      auth: token
+    })
+  })
+});
+
+// login user....................................................
+
+exports.loginUser  = async (req, res) => {
+  const user = new User(req.body) 
+      if (user) {
+          Jwt.sign({
+              user
+          }, jwtKey, {
+              expiresIn: "2h"
+          }, (err, token) => {
+              if (err) {
+                  res.send({
+                      result: 'something went wrong pls try after sometime'
+                  })
+              }
+              res.send({
+                  user,
+                  auth: token
+              })
+          })
+      } else {
+          res.send({
+              result: 'No User '
+          })
+      }
+  }

@@ -8,6 +8,7 @@ const ErrorHander = require("../utils/errorhandler");
 const crypto = require('crypto');
 const Jwt = require('jsonwebtoken')
 const jwtKey = 'e-comm'
+// const cloudinary = require('cloudinary')
 // const { findById } = require("../models/userModel");
 
 // register.........................................................
@@ -22,7 +23,7 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
         message: "user already registered",
       });
 
-  })
+  }) 
 
   const result = await user.save();
 
