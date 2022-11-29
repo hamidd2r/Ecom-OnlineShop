@@ -6,70 +6,67 @@ const sendToken = require("../utils/jwtToken");
 const sendEmail = require("../utils/sendEmail");
 const ErrorHander = require("../utils/errorhandler");
 const crypto = require('crypto');
-const Jwt = require('jsonwebtoken')
-const jwtKey = 'e-comm'
-// const cloudinary = require('cloudinary')
 // const { findById } = require("../models/userModel");
 
 // register.........................................................
 exports.registerUser = catchAsyncErrors(async (req, res, next) => {
-  const user = new User(req.body)
+  const {
+    name,
+    email,
+    password
+  } = req.body;
 
-  User.findOne({
-    email: req.body.email,
-  }).exec((error, user) => {
-    if (user)
-      return res.status(400).json({
-        message: "user already registered",
-      });
+  const user = await User.create({
+    name,
+    email,
+    password,
+    avatar: {
+      public_id: "this is simple id ",
+      url: "profilePicUrl",
+    },
+  });
 
-  }) 
+  const token = user.getJWTToken();
 
-  const result = await user.save();
+  // res.status(201).json({
+  //   success: true,
+  //   user,
+  //   token,
+  // });
 
-  Jwt.sign({
-    result
-  }, jwtKey, {
-    expiresIn: "2h"
-  }, (err, token) => {
-    if (err) {
-      res.send({
-        result: 'something went wrong pls try after sometime'
-      })
-    }
-    res.send({
-      result,
-      auth: token
-    })
-  })
+  sendToken(user, 201, res);
 });
 
 // login user....................................................
 
-exports.loginUser  = async (req, res) => {
-  const user = new User(req.body) 
-      if (user) {
-          Jwt.sign({
-              user
-          }, jwtKey, {
-              expiresIn: "2h"
-          }, (err, token) => {
-              if (err) {
-                  res.send({
-                      result: 'something went wrong pls try after sometime'
-                  })
-              }
-              res.send({
-                  user,
-                  auth: token
-              })
-          })
-      } else {
-          res.send({
-              result: 'No User '
-          })
-      }
+exports.loginUser = catchAsyncErrors(async (req, res, next) => {
+  const {
+    email,
+    password
+  } = req.body;
+
+  // checking if user has given password and email both
+
+  if ((!email || !password)) {
+    return next(new ErrorHander("Please Enter Email & Password", 400));
   }
+
+  const user = await User.findOne({
+    email
+  }).select("+password");
+
+  if (!user) {
+    return next(new ErrorHander("Invalid email or password", 401));
+  }
+
+  const isPasswordMatched = await user.comparePassword(password);
+
+  if (!isPasswordMatched) {
+    return next(new ErrorHander("Invalid email or password", 401));
+  }
+  sendToken(user, 200, res);
+  
+});
 
 // logout..................................................
 

@@ -5,15 +5,15 @@ import LoginIcon from '@mui/icons-material/Login';
 import LockOpenIcon from '@mui/icons-material/LockOpen';
 import { Link, useNavigate } from 'react-router-dom';
 import MailOutlineOutlinedIcon from '@mui/icons-material/MailOutlineOutlined';
-import avatarPreview from '../../images/hamid.jpg'
 import FaceIcon from '@mui/icons-material/Face';
 import {useAlert} from 'react-alert'
+import avatarPreview from '../../images/hamid.jpg'
 import {useDispatch , useSelector} from 'react-redux';
 import {clearErrors , login , register} from '../../actions/userActon'
 
-const LoginSignUp = () => {
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
+const LoginSignUp = (location) => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const {loading , isAuthenticated} = useSelector((state) => state.user)
 
@@ -22,27 +22,26 @@ const LoginSignUp = () => {
     const switcherTab = useRef(null)
 
 
-    const [loginEmail , setLoginEmail] = useState("")
-    const [loginPassword , setLoginPassword] = useState("")
+    const [loginEmail , setLoginEmail] = useState("");
+    const [loginPassword , setLoginPassword] = useState("");
 
     const [user ,setUser] = useState({
       name:"",
       email:"",
-      password:""
-    })
+      password:"",
+    });
 
     const {name , email , password} = user;
-
-    const {avatar , setAvatar} = useState()
+    const {avatar , setAvatar} = useState("/hamid.jpg")
     const [avatarPreview , setAvatarPreview] = useState("/hamid.jpg")
 
     const loginSubmit = (e) =>{
-      e.preventDefault()
+      e.preventDefault();
         dispatch(login(loginEmail, loginPassword))
-    }
+    };
 
     const registerSubmit =(e)=>{
-       e.preventDefault();
+      e.preventDefault()
 
        const myForm = new FormData()
 
@@ -50,9 +49,9 @@ const LoginSignUp = () => {
        myForm.set("email" , email)
        myForm.set("password" , password)
        myForm.set("avatar" , avatar)
-       dispatch(register(myForm))
+       dispatch(register(myForm));
 
-    }
+    };
 
     const registerDataChange = (e) =>{
 
@@ -68,19 +67,19 @@ const LoginSignUp = () => {
         };
         reader.readAsDataURL(e.target.files[0]);
       } else {
-        setUser({ ...user , [e.target.value]: e.target.value})
+        setUser({ ...user, [e.target.name]: e.target.value})
       }
 
-    }
+    };
 
-
+    const redirect = location.search ? location.search.split("=")[1] : "/account";
     useEffect(()=>{
 
       if(isAuthenticated){
-        navigate('/account')
+        navigate(redirect)
       }
 
-    }, [dispatch , navigate , isAuthenticated])
+    }, [dispatch , navigate , isAuthenticated ,redirect])
 
     const switcherTabs = (e , tab) => {
         

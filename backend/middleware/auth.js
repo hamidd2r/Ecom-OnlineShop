@@ -40,22 +40,22 @@ exports.isAuthenticatedUser = catchAsyncErrors(async (req, res, next) => {
 
   exports.verifyToken = (req, res, next) => {
     
-    let token = req.headers["authorization"];
+    // let token = req.headers["authorization"];
   
-    if (token) {
-      token = token.split(" ")[1];
-      Jwt.verify(token, jwtKey, (err, valid) => {
-        if (err) {
-          res.status(401).send({
-            result: "pls provide valid token",
-          });
-        } else {
-          next();
-        } 
-      });
-    } else {
-      res.status(403).send({
-        result: "pls add token with header",
-      });
-    }
+    // if (token) {
+    //   token = token.split(" ")[1];
+    //   Jwt.verify(token, jwtKey, (err, valid) => {
+    //     if (err) {
+    //       res.status(401).send({
+    //         result: "pls provide valid token",
+    //       });
+    //     } else {
+    //       next();
+    //     } 
+    //   });
+    // } else {
+    //   res.status(403).send({
+    //     result: "pls add token with header",
+    //   });
+    // }
   }

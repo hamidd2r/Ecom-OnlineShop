@@ -13,30 +13,30 @@ export const userReducer = (state = {
 }, action) => {
     switch (action.type) {
         case LOGIN_REQUEST:
-            case REGISTER_REQUEST:
+        case REGISTER_REQUEST:
             return {
                 loading: true,
-                    isAuthenticated: false,
+                isAuthenticated: false,
             };
 
         case LOGIN_SUCCESS:
-            case REGISTER_SUCCESS:
+        case REGISTER_SUCCESS:
             return {
                 ...state,
                 loading: false,
-                    isAuthenticated: true,
-                    user: action.payload,
+                isAuthenticated: true,
+                user: action.payload,
             };
 
         case LOGIN_FAIL:
-            case REGISTER_FAIL:
+        case REGISTER_FAIL:
             return {
                 ...state,
                 loading: false,
-                    isAuthenticated: false,
-                    user: action.payload,
-                    user: null,
-                    error: action.payload,
+                isAuthenticated: false,
+                user: action.payload,
+                user: null,
+                error: action.payload,
             };
 
         case CLEAR_ERRORS:
@@ -50,4 +50,4 @@ export const userReducer = (state = {
         default:
             return state
     }
-}
+};
