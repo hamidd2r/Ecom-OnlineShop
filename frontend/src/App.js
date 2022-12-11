@@ -4,6 +4,7 @@ import { Route, Routes } from "react-router-dom";
 import WebFont from "webfontloader";
 import { useEffect, useState } from "react";
 import Footer from "./component/layout/Footer/Footer";
+import NotFound from './component/layout/Header/NotFound.js'
 import Home from "./component/Home/Home.js";
 import ProductDetails from "./component/Product/ProductDetails.js";
 import Products from "./component/Product/Products.js";
@@ -66,6 +67,8 @@ function App() {
 
     getStripeApiKey();
   }, []);
+
+  // window.addEventListener("contextmenu", (e) => e.preventDefault());
   return (
     <>
       {/* <Header/> */}
@@ -102,6 +105,7 @@ function App() {
         <Route isAdmin={true} path="/admin/users" element={<UsersList/>}></Route>
         <Route isAdmin={true} path="/admin/user/:id" element={<UpdateUser/>}></Route>
         <Route isAdmin={true} path="/admin/reviews" element={<ProductReviews/>}></Route>
+        <Route isAdmin={true} path="/*" element={<NotFound/>}></Route>
       
         {/* </Route> */}
       
