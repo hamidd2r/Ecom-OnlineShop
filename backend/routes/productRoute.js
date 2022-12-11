@@ -7,7 +7,8 @@ const {
   getProductDetails,
   createProductReview,
   getProductReviews,
-  deleteReview
+  deleteReview,
+  getAdminProducts
 } = require('../controllers/productController')
 const {
   isAuthenticatedUser,
@@ -22,21 +23,23 @@ const router = express.Router()
 
 router.route('/products').get(getAllProduct)
 
+router.route('/admin/products').get(getAdminProducts)
+
 router
   .route("/admin/product/new")
   .post( createProduct);
 
-router.route('/admin/product/:id').put(verifyToken, updateProduct) //isAuthenticatedUser ,authorizedRoles("admin"),
+router.route('/admin/product/:id').put(updateProduct) //isAuthenticatedUser ,authorizedRoles("admin"),
 
-router.route('/admin/product/:id').delete(verifyToken, deleteProduct) //isAuthenticatedUser ,authorizedRoles("admin"),
+router.route('/admin/product/:id').delete(deleteProduct) //isAuthenticatedUser ,authorizedRoles("admin"),
 
 router.route('/product/:id').get(getProductDetails)
 
-router.route('/review').put(verifyToken, createProductReview) //isAuthenticatedUser,
+router.route('/review').put( createProductReview) //isAuthenticatedUser,
 
-router.route('/reviews').get(verifyToken, getProductReviews)
+router.route('/reviews').get( getProductReviews)
 
-router.route('/reviews/:id').delete(verifyToken, deleteReview) //isAuthenticatedUser ,
+router.route('/reviews/:id').delete( deleteReview) //isAuthenticatedUser ,
 
 
 

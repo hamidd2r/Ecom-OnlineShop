@@ -23,27 +23,27 @@ const {
 
 router.route("/register").post(registerUser);
 
-router.route("/login").post(loginUser);
+router.route("/login").post( loginUser);
 
-router.route("/password/forgot").post(verifyToken, forgotPassword);
+router.route("/password/forgot").post(forgotPassword);
 
-router.route("/logout").get(verifyToken,isAuthenticatedUser, logout);
+router.route("/logout").get(isAuthenticatedUser, logout);
 
-router.route("/password/reset/:token").put(verifyToken,resetPassword);
+router.route("/password/reset/:token").put(resetPassword);
 
-router.route("/me").get(verifyToken,getUserDetails); //    isAuthenticatedUser,
+router.route("/me").get(getUserDetails); //    isAuthenticatedUser,
 
-router.route("/password/update").put(verifyToken,updatePassword); //.isAuthenticatedUser,
+router.route("/password/update").put(updatePassword); //.isAuthenticatedUser,
 
-router.route("/me/update").put(verifyToken,updateProfile);
+router.route("/me/update").put(updateProfile);
 
-router.route("/admin/users").get(verifyToken,getAllUser); //.
+router.route("/admin/users").get(getAllUser); //.
 
-router.route("/admin/user/:id").get(verifyToken,isAuthenticatedUser, getSingleUser); //.
+router.route("/admin/user/:id").get(getSingleUser); //.
 
-router.route("/admin/user/:id").put(verifyToken,isAuthenticatedUser, updateUserRole); //.isAuthenticatedUser, authorizedRoles("admin") ,
+router.route("/admin/user/:id").put(updateUserRole); //.isAuthenticatedUser, authorizedRoles("admin") ,
 
-router.route("/admin/user/:id").delete(verifyToken,isAuthenticatedUser ,deleteUser); //.
+router.route("/admin/user/:id").delete(deleteUser); //.
 
 
 module.exports = router;

@@ -5,6 +5,7 @@ import { useAlert } from "react-alert";
 import MetaData from "../layout/MetaData";
 import {clearErrors, getProduct} from '../../actions/productAction'
 import { useSelector , useDispatch} from 'react-redux'
+import ArrowCircleDownIcon from '@mui/icons-material/ArrowCircleDown';
 import Loader from "../layout/Loader/Loader.js";
  
 const Home = () => { 
@@ -28,11 +29,11 @@ const Home = () => {
      <>
 <MetaData title= "Ecommerce" />
 <div className="banner">
-            <p>Ecommerce</p>
-            <h1>FIND AMAZING PRODUCTS BELOW</h1>
+            <p>Ecommerce Website</p>
+            <h1>APNA DUKAAN PRODUCTS</h1>
             <a href="#container">
               <button>
-                Scroll
+               <ArrowCircleDownIcon/> 
               </button>
             </a>
           </div>

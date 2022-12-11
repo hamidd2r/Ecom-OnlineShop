@@ -2,6 +2,7 @@ const errorHandler = require("../utils/errorhandler");
 const Product = require("../models/productModel");
 const catchAsyncErrors = require("../middleware/catchAsyncError");
 const ApiFreatures = require("../utils/apifeatures");
+const cloudinary = require('cloudinary')
 
 // 1.create product Admin..........................
 exports.createProduct = catchAsyncErrors(async (req, res, next) => {
@@ -40,6 +41,29 @@ exports.getAllProduct = catchAsyncErrors(async (req, res) => {
     });
   }
 });
+
+
+// get all product admin...
+exports.getAdminProducts = catchAsyncErrors(async (req, res) => {
+  
+const products = await Product.find()
+
+
+
+  if (!products) {
+    return res.status(500).json({
+      success: false,
+      message: "product not found",
+    });
+  } else {
+    return res.status(200).json({
+      success: true,
+      products,
+    
+    });
+  }
+});
+//
 
 // 3.get single product.................................
 

@@ -1,0 +1,22 @@
+
+    .speedDialIcon {
+        width: 56px;
+        height: 56px;
+        border-radius: 100%;
+      }
+
+
+      .navbar{
+        background-color: white !important;
+        color: black;
+      }
+
+
+      .navbar-nav{
+        color: black;
+      }
+
+
+      .nav-link {
+        color: black !important;
+      }

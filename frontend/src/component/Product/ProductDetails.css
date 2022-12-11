@@ -80,23 +80,25 @@
   .detailsBlock-3-1-1 > input {
     border: none;
     padding: 0.5vmax;
-    width: 1vmax;
+    width: 3vmax;
     text-align: center;
+    justify-content: center;
     outline: none;
     font: 400 0.8vmax "Roboto";
-    color: rgba(0, 0, 0, 0.74);
+    color: rgba(0, 0, 0, 0.889);
   }
   
   .detailsBlock-3-1 > button:last-child {
     border: none;
     cursor: pointer;
-    color: white;
+    color: rgb(255, 255, 255);
     transition: all 0.5s;
-    background-color: tomato;
+    background-color: rgb(239, 46, 12);
     font: 500 0.7vmax "Roboto";
     border-radius: 20px;
     padding: 0.5vmax 2vmax;
     margin: 1vmax;
+
     outline: none;
   }
   

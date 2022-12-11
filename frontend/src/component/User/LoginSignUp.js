@@ -15,7 +15,7 @@ const LoginSignUp = (location) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const {loading , isAuthenticated} = useSelector((state) => state.user)
+  const {loading , isAuthenticated} = useSelector((state) => state.user);
 
     const loginTab = useRef(null)
     const registerTab = useRef(null)
@@ -32,7 +32,7 @@ const LoginSignUp = (location) => {
     });
 
     const {name , email , password} = user;
-    const {avatar , setAvatar} = useState("/hamid.jpg")
+    const {avatar , setAvatar} = useState("/hamid.jpg") //dot {}
     const [avatarPreview , setAvatarPreview] = useState("/hamid.jpg")
 
     const loginSubmit = (e) =>{
@@ -72,14 +72,14 @@ const LoginSignUp = (location) => {
 
     };
 
-    const redirect = location.search ? location.search.split("=")[1] : "/account";
+    // const redirect = location.search ? location.search.split("=")[1] : "/account";
     useEffect(()=>{
-
+     const isAuthenticated = localStorage.getItem("user")
       if(isAuthenticated){
-        navigate(redirect)
+        navigate('/account')
       }
 
-    }, [dispatch , navigate , isAuthenticated ,redirect])
+    }, [dispatch , navigate , isAuthenticated])
 
     const switcherTabs = (e , tab) => {
         
@@ -101,7 +101,7 @@ const LoginSignUp = (location) => {
   return (
     <>
      <Fragment>
-      {loading? <Loader/>
+      {/* {loading? <Loader/> */}
       :    <div className="LoginSignUpContainer">
             <div className="LoginSignUpBox">
                 <div>
@@ -196,7 +196,7 @@ const LoginSignUp = (location) => {
               </form>
 
             </div>
-        </div>}
+        </div>
      </Fragment>
     </>
   )

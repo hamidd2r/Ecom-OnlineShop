@@ -1,5 +1,5 @@
 .banner {
-    background-image: url("../../images/cover.jfif");
+    background-image: url("https://media.istockphoto.com/id/1422817882/photo/modern-3d-abstract-background-platform-for-product-presentation.jpg?b=1&s=170667a&w=0&k=20&c=BmCj5amvClu4Newtd2PRe6psepPa6z-ISjH4PHUy5l4=");
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -14,28 +14,34 @@
   
   .banner > h1 {
     margin: 5vmax;
+    color: black;
   
     font: 600 2.5vmax "Roboto";
   }
   
   .banner > p {
-    font: 300 1.4vmax "Lucida Sans";
+    font: 500 1.4vmax "Lucida Sans";
+    color: black;
+
   }
   
   .banner > a > button {
     margin-bottom: 5vmax;
     cursor: pointer;
-    background-color: white;
+    /* background-color: white; */
     border: 1px solid white;
     border-radius: 0;
     padding: 1vmax;
     transition: all 0.5s;
     width: 9vmax;
     font: 500 1vmax "Roboto";
+    background-color: rgb(240, 87, 36);
+    border-radius: 40px;
   }
   .banner > a > button:hover {
     background-color: rgba(255, 255, 255, 0);
     color: white;
+    background-color: blueviolet;
   }
   
   .banner::after {
@@ -71,7 +77,7 @@
   }
   
   .productCard {
-    width: 14vmax;
+    width: 15vmax;
     display: flex;
     flex-direction: column;
     text-decoration: none;

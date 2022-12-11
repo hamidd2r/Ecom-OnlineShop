@@ -4,12 +4,24 @@ const getJWTToken = require("../models/userModel");
 const getResetPasswordToken = require("../models/userModel");
 const sendToken = require("../utils/jwtToken");
 const sendEmail = require("../utils/sendEmail");
+const Jwt = require('jsonwebtoken')
+const jwtKey = 'e-comm'
 const ErrorHander = require("../utils/errorhandler");
 const crypto = require('crypto');
 // const { findById } = require("../models/userModel");
 
 // register.........................................................
 exports.registerUser = catchAsyncErrors(async (req, res, next) => {
+  // const user = new User(req.body)
+
+  User.findOne({
+    email: req.body.email,
+  }).exec((error, user) => {
+    if (user)
+      return res.status(400).json({
+        message: "user already registered",
+      });
+  })
   const {
     name,
     email,
@@ -26,27 +38,33 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
     },
   });
 
-  const token = user.getJWTToken();
+  const result = await user.save();
 
-  // res.status(201).json({
-  //   success: true,
-  //   user,
-  //   token,
-  // });
-
-  sendToken(user, 201, res);
+  Jwt.sign({
+    result
+  }, jwtKey, {
+    expiresIn: "2h"
+  }, (err, token) => {
+    if (err) {
+      res.send({
+        result: 'something went wrong pls try after sometime'
+      })
+    }
+    res.send({
+      result,
+      auth: token
+    })
+  })
 });
 
 // login user....................................................
 
 exports.loginUser = catchAsyncErrors(async (req, res, next) => {
+  // const user = new User(req.body);
   const {
     email,
     password
   } = req.body;
-
-  // checking if user has given password and email both
-
   if ((!email || !password)) {
     return next(new ErrorHander("Please Enter Email & Password", 400));
   }
@@ -64,9 +82,30 @@ exports.loginUser = catchAsyncErrors(async (req, res, next) => {
   if (!isPasswordMatched) {
     return next(new ErrorHander("Invalid email or password", 401));
   }
-  sendToken(user, 200, res);
-  
-});
+
+
+  if (user) {
+    Jwt.sign({
+      user
+    }, jwtKey, {
+      expiresIn: "2h"
+    }, (err, token) => {
+      if (err) {
+        res.send({
+          result: 'something went wrong pls try after sometime'
+        })
+      }
+      res.send({
+        user,
+        auth: token
+      })
+    })
+  } else {
+    res.send({
+      result: 'No User '
+    })
+  }
+})
 
 // logout..................................................
 
@@ -169,7 +208,7 @@ exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
 
 // get user details
 exports.getUserDetails = catchAsyncErrors(async (req, res, next) => {
-  const user = await User.findById(req.user.id); // _id
+  const user = await User.find(req.user.id); // _id
 
   res.status(200).json({
     success: true,
@@ -181,7 +220,7 @@ exports.getUserDetails = catchAsyncErrors(async (req, res, next) => {
 
 exports.updatePassword = catchAsyncErrors(async (req, res, next) => {
   const user = await User.findById(req.user.id).select("+password");
-  
+
 
   const isPasswordMatched = await user.comparePassword(req.body.oldPassword);
 
@@ -223,10 +262,10 @@ exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
   //   newUserData.avatar = {
   //     public_id: myCloud.public_id,
   //     url: myCloud.secure_url,
-  //   };
+  //   };   
   // }
   //user.id
-  const user = await User.findByIdAndUpdate(req.params.id, newUserData, {
+  const user = await User.findByIdAndUpdate(req.token, newUserData, {
     new: true,
     runValidators: true,
     useFindAndModify: false,
@@ -283,6 +322,8 @@ exports.updateUserRole = catchAsyncErrors(async (req, res, next) => {
     email: req.body.email,
     role: req.body.role,
   };
+
+  
 
   await User.findByIdAndUpdate(req.params.id, newUserData, {
     new: true,
