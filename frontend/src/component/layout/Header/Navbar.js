@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import ShoppingCartSharpIcon from '@mui/icons-material/ShoppingCartSharp';
 import SearchIcon from '@mui/icons-material/Search';
@@ -6,8 +6,14 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import './Nav.css'
 
 const Navbar = () => {
+
+const navigate = useNavigate()
+
+
+
+
+
   const isAuthenticated = localStorage.getItem("user")
-  const navigate = useNavigate()
   const logout = () =>{
  localStorage.clear()
  navigate('/')

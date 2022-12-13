@@ -14,7 +14,8 @@ import { useDispatch , useSelector} from "react-redux";
 
 const UserOptions = ({ user }) => {
 
-  const { cartItems} = useSelector((state) => state.cart)
+  const { cartItems } = useSelector((state) => state.cart);
+
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -22,7 +23,15 @@ const UserOptions = ({ user }) => {
   const options = [
     { icon: <ListAltIcon />, name: "Orders", func: orders },
     { icon: <PersonIcon />, name: "Profile", func: account },
-    { icon: <ShoppingCartIcon  style={{color:cartItems.length>0?"tomato":"unset"}}/>, name: `Cart(${cartItems.length})`, func: cart },
+    {
+      icon: (
+        <ShoppingCartIcon
+          style={{ color: cartItems.length > 0 ? "tomato" : "unset" }}
+        />
+      ),
+      name: `Cart(${cartItems.length})`,
+      func: cart,
+    },
     { icon: <ExitToAppIcon />, name: "Logout", func: logoutUser },
   ];
 
@@ -35,33 +44,29 @@ const UserOptions = ({ user }) => {
   }
 
   function dashboard() {
-    navigate("admin/dashboard");
-  }
-
-  function cart() {
-    navigate("/cart");
+    navigate("/admin/dashboard");
   }
 
   function orders() {
     navigate("/orders");
   }
-
   function account() {
     navigate("/account");
+    
 
   }
-
+  function cart() {
+    navigate("/cart");
+  }
   function logoutUser() {
-    
-    localStorage.clear();
-    window.location.reload();
+    localStorage.clear()
     navigate('/')
+    window.location.reload();
 
-  
-    
+    alert("Logout Successfully");
   }
 
-  return (
+  return ( 
     <>
     <Backdrop open={open} style={{zIndex:"10"}}
     />

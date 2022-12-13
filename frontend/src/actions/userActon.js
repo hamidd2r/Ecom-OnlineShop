@@ -128,23 +128,19 @@ export const loadUser = () => async (dispatch) => {
     }
 };
 
-
+ 
 
 // logout UsER...
+// Logout User
 export const logout = () => async (dispatch) => {
     try {
-        await axios.get(`http://localhost:4000/api/v1/logout`);
-        
-        dispatch({
-            type: LOGOUT_SUCCESS
-        });
+      await axios.get(`http://localhost:4000/api/v1/logout`);
+  
+      dispatch({ type: LOGOUT_SUCCESS });
     } catch (error) {
-        dispatch({
-            type: LOGOUT_FAIL,
-            payload: error.response.data.message
-        })
+      dispatch({ type: LOGOUT_FAIL, payload: error.response.data.message });
     }
-};
+  };
 
 //Upadte Profile.. User.
 export const updateProfile = (userData) => async (dispatch) => {
