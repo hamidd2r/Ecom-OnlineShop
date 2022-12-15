@@ -61,7 +61,7 @@ const UserOptions = ({ user }) => {
   function logoutUser() {
     localStorage.clear()
     navigate('/')
-    window.location.reload();
+    // window.location.reload();
 
     alert("Logout Successfully");
   }

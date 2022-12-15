@@ -15,7 +15,7 @@ const {
   authorizedRoles,
   verifyToken,
 
-} = require('../middleware/auth')
+} = require('../middleware/auth') 
 
 const router = express.Router()
 
@@ -27,7 +27,7 @@ router.route('/admin/products').get(getAdminProducts)
 
 router
   .route("/admin/product/new")
-  .post( createProduct);
+  .post(createProduct);
 
 router.route('/admin/product/:id').put(updateProduct) //isAuthenticatedUser ,authorizedRoles("admin"),
 

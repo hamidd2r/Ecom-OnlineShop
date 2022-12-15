@@ -155,10 +155,17 @@ export const createProduct = (productData) => async (dispatch) => {
       headers: { "Content-Type": "application/json" },
     };
 
+
+    // const headers = { Authorization: localStorage.getItem('token') };
+    // console.log(headers)
+  
+
     const { data } = await axios.post(
       `http://localhost:4000/api/v1/admin/product/new`,
       productData,
-      config
+      config,
+      // headers
+   
     );
 
     dispatch({

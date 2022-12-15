@@ -16,7 +16,7 @@ const Profile = () => {
   }, [isAuthenticated])
   return (
     <>
-      {/* <MetaData title={user.name} /> */}
+      <MetaData title={user.name} />
       <div className="profileContainer">
         <div>
           <h1>My Profile</h1>
