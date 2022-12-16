@@ -16,7 +16,7 @@ exports.createProduct = catchAsyncErrors(async (req, res, next) => {
 
 // 2.Get All Product...............................
 exports.getAllProduct = catchAsyncErrors(async (req, res) => {
-  
+
 
   const resultPerPage = 8
   const productsCount = await Product.countDocuments()
@@ -45,8 +45,9 @@ exports.getAllProduct = catchAsyncErrors(async (req, res) => {
 
 // get all product admin...
 exports.getAdminProducts = catchAsyncErrors(async (req, res) => {
-  
-const products = await Product.find()
+
+  const products = await Product.find()
+
 
 
 
@@ -59,33 +60,37 @@ const products = await Product.find()
     return res.status(200).json({
       success: true,
       products,
-    
+
     });
   }
 });
 //
 
-// 3.get single product.................................
+// 3.Get Product Details
 
 exports.getProductDetails = catchAsyncErrors(async (req, res, next) => {
-  const product = await Product.findById(req.params.id);
+  const product = await Product.findById(req.params.id)
 
+  
   if (!product) {
-    return next(new errorHandler("product not found", 404));
-    // change total this line solve error
+    return next(new errorHandler("product not found", 404))
   }
 
   res.status(200).json({
     success: true,
     product,
-    // productCount
   });
-});
+
+
+ 
+
+})
 
 // Update Product.................................Admin
 
 exports.updateProduct = catchAsyncErrors(async (req, res, next) => {
   let product = await Product.findById(req.params.id);
+  // console.log(product)
 
   if (!product) {
     return next(new errorHandler("product not found", 404))

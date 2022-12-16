@@ -52,6 +52,8 @@ const UserOptions = ({ user }) => {
   }
   function account() {
     navigate("/account");
+  
+
     
 
   }
@@ -59,6 +61,7 @@ const UserOptions = ({ user }) => {
     navigate("/cart");
   }
   function logoutUser() {
+    dispatch(logout())
     localStorage.clear()
     navigate('/')
     // window.location.reload();

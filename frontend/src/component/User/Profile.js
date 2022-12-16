@@ -2,13 +2,16 @@ import React, { useEffect } from 'react'
 import './Profile.css'
 import { Link, useNavigate } from 'react-router-dom'
 import MetaData from '../layout/MetaData'
+import Navbar from "../layout/Header/Navbar";
+
 import { useSelector } from 'react-redux'
 
 const Profile = () => {
+
   const navigate = useNavigate()
   const { user, isAuthenticated } = useSelector((state) => state.user)
   console.log(user)
-
+  
   useEffect(() => {
     if (isAuthenticated === false) {
       navigate('/login')
@@ -16,6 +19,8 @@ const Profile = () => {
   }, [isAuthenticated])
   return (
     <>
+    <div className='kuchbhi'>
+
       <MetaData title={user.name} />
       <div className="profileContainer">
         <div>
@@ -42,6 +47,7 @@ const Profile = () => {
             <Link to="/password/update">Change Password</Link>
           </div>
         </div>
+      </div>
       </div>
     </>
   )

@@ -9,10 +9,11 @@
 
   .shippingBox {
     background-color: white;
-    width: 25vw;
-    height: 90vh;
+    width: 50vw;
+    height: 100vh;
     box-sizing: border-box;
     overflow: hidden;
+    margin-top: -20px;
   }
 
   .shippingHeading {
