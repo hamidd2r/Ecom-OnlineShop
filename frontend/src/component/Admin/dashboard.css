@@ -68,12 +68,16 @@
   
   .lineChart {
     width: 80%;
+    height: 70vh !important;
     margin: auto;
   }
   
   .doughnutChart {
     width: 30vmax;
     margin: auto;
+    height: 70vh !important;
+
+    
   }
   
   @media screen and (max-width: 600px) {

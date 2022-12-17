@@ -7,6 +7,7 @@ const cors = require("cors")
 
 
 app.use(cors())
+const Stripe = require('strip')(process.env.SECRET_KEY)
 
 
 // handling uncaught exception
@@ -48,3 +49,28 @@ process.on("unhandledRejection", (err) => {
     process.exit(1);
   });
 });
+
+app.post('/payment' , async(req , res) => {
+  let status ,error;
+  const {token, amount} = req.body;
+  
+  try {
+    await Stripe.charges.create({
+      source:token.id,
+      amount: req.body.amount,
+      currency: "inr",
+      metadata: {
+        company: "Ecommerce",
+      },
+
+    }); 
+
+    status = 'success'
+    
+  } catch (error) {
+    console.log(error)
+    status='Failure'
+  }
+  res.json({error , status})
+
+})

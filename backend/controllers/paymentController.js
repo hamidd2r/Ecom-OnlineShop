@@ -1,9 +1,7 @@
 const catchAsyncError = require('../middleware/catchAsyncError');
+const strip = require('strip')(process.env.SECRET_KEY);
 
-
-const strip = require('strip')(process.env.STRIPE_SECRET_KEY);
-
-
+ 
 
 exports.processPayment = catchAsyncError(async (req, res, next) => {
     const myPayment = await strip.paymentIntents.create({

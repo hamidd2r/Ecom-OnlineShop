@@ -1,135 +1,89 @@
-import React, { Fragment, useEffect, useRef } from 'react'
-import CheckoutSteps from '../Cart/CheckoutSteps'
-import { useSelector , useDispatch } from 'react-redux'
-import MetaData from '../layout/MetaData'
-import {
-    CardNumberElement,
-    CardCvcElement,
-    CardExpiryElement,
-    useStripe,
-    useElements,
-  } from "@stripe/react-stripe-js";
+import React from 'react'
+import { useState } from 'react'
+import axios from 'axios'
+import StripeCheckout from 'react-stripe-checkout';
+import Swal from 'sweetalert2'
+import withReactContent from 'sweetalert2-react-content'
+import { useNavigate } from 'react-router-dom';
 
-  import axios from 'axios';
-  import './payment.css'
-  
-  import CreditCardIcon from '@mui/icons-material/CreditCard';
-  import EventIcon from '@mui/icons-material/Event';
-  import VpnKeyIcon from '@mui/icons-material/VpnKey';
-import { Typography } from '@mui/material';
-import { Link, Navigate, useNavigate } from 'react-router-dom';
-
-
+const MySwal = withReactContent(Swal)
+ 
 
 const Payment = () => {
-    const navigate = useNavigate()
-    const orderInfo = JSON.parse(sessionStorage.getItem("orderInfo"));
+  const navigate = useNavigate()
 
- 
+  const publishableKey = 'pk_test_51MBzy2SIQ60BsYJXed9AAvAecYfpLSz5fHuIPsL78ofJHesOQltgWe3oQTWD8ajDgEtI9qdxjR9woP6vTt3aBpBC001gIHHvt0';
 
-    const dispatch = useDispatch();
-//   const stripe = useStripe();
-//   const elements = useElements();
-  const payBtn = useRef(null);
-
-  const { shippingInfo, cartItems } = useSelector((state) => state.cart);
-//   const { user } = useSelector((state) => state.user);
-//   const { error } = useSelector((state) => state.newOrder);
+  const [product , setProduct] = useState({
+    name:"headphone",
+    price: 10,
+  })
 
 
-//   const paymentData = {
-//     amount: Math.round(orderInfo.totalPrice * 100),
-//   };
+  const priceForStripe = product.price*100;
 
-
-  const order = {
-    shippingInfo,
-    orderItems: cartItems,
-    itemsPrice: orderInfo.subtotal,
-    taxPrice: orderInfo.tax,
-    shippingPrice: orderInfo.shippingCharges,
-    totalPrice: orderInfo.totalPrice,
-  };
-
- 
-
-   
-    
-  const submitHandler = () =>{
-
-    
+  const handleSuccess = () =>{
+    MySwal.fire({
+      icon:'success',
+      title:'payment was successful',
+      time:400
+    })
 
   }
 
 
-  const redirect = () =>{
-   navigate('/success')
+  const payNow =  async token => {
+    try {
+      const response = await axios({
+        url:'http://localhost:4000/payment',
+        method:'post',
+        data: {
+          amount:product.price*100,
+          token,
+        },
+      });
+
+      if(response.status === 200){
+        handleSuccess();
+    navigate('/success')
+
+      }
+      
+    } catch (error) {
+      console.log(error)
+    }
 
   }
-
-     
-  useEffect(() => {
-   
-  }, [dispatch, alert]);
-
-
-  
-
-
-
   return (
     <>
-        <Fragment>
-      <MetaData title="Payment" />
-      <CheckoutSteps activeStep={2} />
-      <div className="paymentContainer">
-       <form 
-       className='paymentForm'>
+      <div className="container">
+        <h1>complete stripe payment gateway...</h1>
+        <p>
 
-        <Typography>Card Info</Typography>
-        <div>
-            <CreditCardIcon/>
-            {/* <CardNumberElement className='paymentInput'/> */}
-            <input type="text" className='paymentInput' placeholder='4000 0027 6000 1023' />
-        </div>
+        <span>Product:</span>
 
+       {product.name}
+        </p>
+       
 
-        <div>
-            <EventIcon/>
-            {/* <CardExpiryElement className='paymentInput'/> */}
-            <input type="text" className='paymentInput' placeholder='02 / 22' />
+        <span>Price:</span>
+        {product.price}
 
-        </div>
+        <StripeCheckout
 
-
-
-        <div>
-            <VpnKeyIcon/>
-            {/* <CardCvcElement className='paymentInput'/> */}
-            <input  type="text" className='paymentInput' placeholder='9 8 3' />
-
-            
-        </div>
-
-
-        <input
-         type="submit"
-          value={`Pay -  ₹ ${orderInfo && orderInfo.totalPrice}`}
-          ref= {payBtn}
-          onClick={redirect}
-          className='paymentFormBtn'
-           />
-
-
-
-
-
-
-        
-       </form>
+          stripeKey={publishableKey}
+          label='Pay Now'
+          name=''
+          billingAddress
+          shippingAddress
+          amount={priceForStripe}
+          description={`you total${product.price}`}
+          token={payNow}
+         
+        />
       </div>
-    </Fragment>
     </>
+
   )
 }
 

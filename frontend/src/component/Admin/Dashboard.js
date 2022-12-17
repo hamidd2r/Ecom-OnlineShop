@@ -8,10 +8,12 @@ import { Link } from 'react-router-dom';
 import { useSelector , useDispatch} from 'react-redux'
 import { Doughnut  , Line} from 'react-chartjs-2'; 
 import {Chart, ArcElement} from 'chart.js'
+import {registerables } from 'chart.js';
 import {CategoryScale} from 'chart.js'; 
 import { getAllOrders } from '../../actions/orderAction.js';
 import { getAllUsers } from '../../actions/userActon.js';
 Chart.register(ArcElement,CategoryScale);
+Chart.register(...registerables);
 
 
 const Dashboard = () => {
@@ -62,18 +64,18 @@ const Dashboard = () => {
         },
       ],
     };
-
-
+  
     const doughnutState = {
-        labels: ["Out of Stock", "InStock"],
-        datasets: [
-          {
-            backgroundColor: ["#00A6B4", "#6800B4"],
-            hoverBackgroundColor: ["#4B5000", "#35014F"],
-            data: [outOfStock , products.length - outOfStock],
-          },
-        ],
-      };
+      labels: ["Out of Stock", "InStock"],
+      datasets: [
+        {
+          backgroundColor: ["#00A6B4", "#4B5000"],
+          hoverBackgroundColor: ["#4B5000", "#35014F"],
+          data: [outOfStock, products.length - outOfStock],
+        },
+      ],
+    };
+  
 
       
 
@@ -111,9 +113,9 @@ const Dashboard = () => {
     </div>
 
 
-     {/* <div className="lineChart">
+     <div className="lineChart">
           <Line data={lineState} />
-        </div>  */}
+        </div> 
  
 
 
