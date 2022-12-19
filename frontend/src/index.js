@@ -5,6 +5,8 @@ import {BrowserRouter as Router } from "react-router-dom"
 import App from './App';
 import {Provider} from 'react-redux'
 import store from './store';
+import { ChakraProvider } from '@chakra-ui/react'
+
 
 // import { positions, transitions, Provider as AlertProvider } from "react-alert";
 // import AlertTemplate from "react-alert-template-basic";

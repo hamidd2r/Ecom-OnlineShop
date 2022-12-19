@@ -23,6 +23,8 @@ import Shipping from './component/Cart/Shipping'
 import ConfirmOrder from './component/Cart/ConfirmOrder'
 import Payment from './component/Cart/Payment'
 import OrderSuccess from './component/Cart/OrderSuccess'
+import Rozar from './component/Payment/Rozar.js'
+import PaymentSuccess from './component/Payment/PaymentSuccess.js'
 import MyOrders from './component/Order/MyOrders'
 import OrderDetails from './component/Order/OrderDetails'
 import Dashboard from './component/Admin/Dashboard'
@@ -55,6 +57,7 @@ function App() {
   return (
     <>
       <Navbar />
+      
       {isAuthenticated && <UserOptions user={user} />}
       <Routes>
         <Route path="/" element={<Home />}></Route>
@@ -67,6 +70,11 @@ function App() {
         <Route path="/contact" element={<Contact />}></Route>
         <Route  path="/*" element={<NotFound/>}></Route>
         <Route  path="/useroption" element={<UserOptions/>}></Route>
+        <Route  path="/rozar" element={<Rozar/>}></Route>
+        <Route  path="/paymentsuccess" element={<PaymentSuccess/>}></Route>
+        
+       
+
 
     
 

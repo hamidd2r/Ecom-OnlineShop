@@ -32,6 +32,8 @@ app.use('/api/v1' , user)
 app.use('/api/v1' , order)
 app.use('/api/v1' , payment)
 
+app.get('/api/getkey' , (req, res)=> res.status(200).json({key:'rzp_test_Ai3D9ADwQQvYN1'}))
+
 
 app.use(express.static(path.join(__dirname , "../frontend/build")));
 

@@ -7,7 +7,7 @@ import { Link } from 'react-router-dom'
 import { Avatar, Button, Typography } from '@mui/material';
 
 // import About from '../components/About'
-
+ 
 
 
 const About = () => {
@@ -20,7 +20,7 @@ const About = () => {
       <div className="aboutSectionGradient"></div>
       <div className="aboutSectionContainer">
         <Typography component="h1">About Us</Typography>
-
+ 
         <div>
           <div>
             <Avatar

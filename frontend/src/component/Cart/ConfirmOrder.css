@@ -108,10 +108,13 @@
     padding: 2vmax 0;
   }
   
-  .orderSummary > button {
+   .button {
     background-color: tomato;
     color: white;
     width: 100%;
+    margin-top: -257px !important;
+    margin-left: 79px !important;
+    margin-right: 79px !important;
     padding: 1vmax;
     border: none;
     margin: auto;

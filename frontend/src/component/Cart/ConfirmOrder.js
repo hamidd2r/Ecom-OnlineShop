@@ -7,14 +7,16 @@ import axios from 'axios'
 import StripeCheckout from 'react-stripe-checkout';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
-
+import Card from "../Payment/Card";
 import { useNavigate } from "react-router-dom";
 import { getOrderDetails , clearErrors , updateOrder } from "../../actions/orderAction";
 import { Link } from "react-router-dom";
 import { Typography } from "@mui/material";
 import { useState } from "react";
+import { Box, Stack } from "@chakra-ui/react";
 
-const MySwal = withReactContent(Swal)
+
+
 const ConfirmOrder = () => {
     const navigate = useNavigate();
 
@@ -46,47 +48,37 @@ const ConfirmOrder = () => {
     navigate('/')
   };
 
-  const publishableKey = 'pk_test_51MBzy2SIQ60BsYJXed9AAvAecYfpLSz5fHuIPsL78ofJHesOQltgWe3oQTWD8ajDgEtI9qdxjR9woP6vTt3aBpBC001gIHHvt0';
 
-  const [product , setProduct] = useState({
-    name:"headphone",
-    price: 10,
-  })
-
-
-
-  const handleSuccess = () =>{
-    MySwal.fire({
-      icon:'success',
-      title:'payment was successful',
-      time:400
+  const checkoutHandler = async(amount) =>{
+    const {data:{key}} = await axios.get('http://localhost:4000/api/getkey')
+    const {data:{order}}  = await axios.post("http://localhost:4000/api/v1/checkout" , {
+      amount
     })
-
-  }
-
- 
-  const payNow =  async token => {
-    try {
-      const response = await axios({
-        url:'http://localhost:4000/payment',
-        method:'post',
-        data: {
-          amount:product.price*100,
-          token,
-        },
-      });
-
-      if(response.status === 200){
-        handleSuccess();
-    navigate('/success')
-
+    var options = {
+      key, 
+      amount: order.amount, 
+      currency: "INR",
+      name: "Md Hamid Ali",
+      description: "this is transection of ecom ",
+      image: "https://media.licdn.com/dms/image/D4D03AQErRD2-QdJjsw/profile-displayphoto-shrink_800_800/0/1666006884322?e=1677110400&v=beta&t=VZ8sfjNtRcwgc9Vv1l3mGdcpry5ex4njvs9Si-uX3tk",
+      order_id: order.id, 
+      callback_url: "http://localhost:4000/api/v1/paymentverification",
+      prefill: {
+          "name": "hamid",
+          "email": "hamid.ali@example.com",
+          "contact": "8988766554"
+      },
+      notes: {
+          "address": "Razorpay Corporate Office"
+      },
+      theme: {
+          "color": "#FF6347"
       }
-      
-    } catch (error) {
-      console.log(error)
-    }
-
+  };
+  const razor = new window.Razorpay(options);
+  razor.open();
   }
+
 
 
 
@@ -160,20 +152,13 @@ const ConfirmOrder = () => {
                 <span>₹{totalPrice}</span>
               </div>
 
-              <StripeCheckout
-              
-stripeKey={publishableKey}
-label={`₹${totalPrice}`}
-name= 'Md Hamid Ali'
-billingAddress
-email="admin@gmail.com"
-
-shippingAddress
-amount={proceedToPayment}
-description={`₹${totalPrice}`}
-token={payNow}
-
-/>
+             {/*  */}
+             <Box>
+            <Stack h={"100vh" } justifyContent="center" alignItems="center" direction={["column" , "row"]}>
+            <Card onClick={proceedToPayment}  amount={totalPrice} img="https://media.licdn.com/dms/image/D4D03AQErRD2-QdJjsw/profile-displayphoto-shrink_800_800/0/1666006884322?e=1677110400&v=beta&t=VZ8sfjNtRcwgc9Vv1l3mGdcpry5ex4njvs9Si-uX3tk"  checkoutHandler={checkoutHandler} />
+            </Stack>
+        </Box>
+        {/*  */}
             </div>
           </div>
         </div>
