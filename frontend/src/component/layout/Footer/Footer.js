@@ -5,7 +5,7 @@ import appStore from "../../../../src/images/pic5.png";
 const Footer = () => {
   return (
     <>
-       <footer id="footer">
+       <footer className="footer">
       <div className="leftFooter">
         <h4>DOWNLOAD OUR APP</h4>
         <p>Download App for Android and IOS mobile phone</p>
@@ -27,7 +27,6 @@ const Footer = () => {
         <a href="http://instagram.com/">Facebook</a>
       </div>
     </footer>
-  );
 
     </>
   )

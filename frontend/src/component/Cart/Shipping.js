@@ -13,7 +13,7 @@ import { Country, State} from 'country-state-city'
 import MetaData from '../layout/MetaData';
 import CheckoutSteps from '../Cart/CheckoutSteps'
 
-const Shipping = () => {
+const Shipping = () => {   
     const navigate = useNavigate();
     const dispatch = useDispatch()
 

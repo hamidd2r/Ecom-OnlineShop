@@ -32,6 +32,8 @@ import ProductList from './component/Admin/ProductList'
 import UpdateProduct from './component/Admin/UpdateProduct'
 import ProcessOrder from './component/Admin/ProcessOrder'
 import UsersList from './component/Admin/UsersList'
+import ForgotPassword from './component/User/ForgotPassword'
+import ResetPassword from './component/User/ResetPassword'
 import UpdateUser from './component/Admin/UpdateUser'
 import ProductReviews from './component/Admin/ProductReviews'
 import axios from "axios";
@@ -72,6 +74,8 @@ function App() {
         <Route  path="/useroption" element={<UserOptions/>}></Route>
         <Route  path="/rozar" element={<Rozar/>}></Route>
         <Route  path="/paymentsuccess" element={<PaymentSuccess/>}></Route>
+        <Route  path="/password/forgot" element={<ForgotPassword/>}></Route>
+        <Route  path="/password/reset/:token" element={<ResetPassword/>}></Route>
         
        
 

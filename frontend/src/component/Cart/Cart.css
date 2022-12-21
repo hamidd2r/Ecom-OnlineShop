@@ -37,7 +37,7 @@
     color: white;
     display: grid;
     grid-template-columns: 4fr 1fr 1fr;
-    font: 300 0.7vmax "Roboto";
+    font: 300 1vmax "Roboto";
   }
   .cartHeader > p {
     margin: 10px;
@@ -77,7 +77,7 @@
     width: 3vmax;
     text-align: center;
     outline: none;
-    font: 400 0.8vmax "Roboto";
+    font: 400 vmax "Roboto";
     color: rgba(0, 0, 0, 0.74);
   }
   

@@ -12,7 +12,7 @@ import {useDispatch , useSelector} from 'react-redux';
 import {clearErrors , login , register} from '../../actions/userActon'
 
 const LoginSignUp = (location) => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch(); 
   const navigate = useNavigate();
 
   const {loading , isAuthenticated} = useSelector((state) => state.user);
@@ -76,7 +76,7 @@ const LoginSignUp = (location) => {
     useEffect(()=>{
      const isAuthenticated = localStorage.getItem("user")
       if(isAuthenticated){
-        navigate('/account')
+        navigate('/')
       }
 
     }, [dispatch , navigate , isAuthenticated])

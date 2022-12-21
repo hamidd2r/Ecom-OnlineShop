@@ -36,7 +36,7 @@
 
 .aboutSectionContainer:hover{
   color: aqua;
-  box-shadow: 20px 20px 20px  20px rgb(248, 9, 9);
+  /* box-shadow: 20px 20px 20px  20px rgb(248, 9, 9); */
   
 }
 

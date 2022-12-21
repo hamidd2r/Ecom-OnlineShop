@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { addItemsToCart, removeItemsToCart } from "../../actions/cartAction";
 import { Typography } from "@mui/material";
 import { Link, useNavigate } from "react-router-dom";
+import cartimg from '../../images/undraw_empty_cart_co35.svg'
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -42,7 +43,8 @@ const Cart = () => {
     <Fragment>
       {cartItems.length === 0 ?  (
         <div className="emptyCart">
-       <RemoveShoppingCartIcon/>
+<img style={{marginTop:"100px"}} src={cartimg} alt="" height={200} />
+       {/* <RemoveShoppingCartIcon/> */}
        <Typography>Not product in your carts</Typography>
        <Link to= '/products'>View Products</Link>
         </div>

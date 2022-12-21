@@ -1,7 +1,9 @@
 .banner {
-    background-image: url("https://assets.aboutamazon.com/dims4/default/134d5c4/2147483647/strip/true/crop/2500x1406+0+606/resize/1200x675!/quality/90/?url=https%3A%2F%2Famazon-blogs-brightspot.s3.amazonaws.com%2Fab%2F7d%2F7387c5c34035af9dafce465fe433%2Famazon-org-smile-extruded-sq.jpg");
+    /* background-image: url("https://assets.aboutamazon.com/dims4/default/134d5c4/2147483647/strip/true/crop/2500x1406+0+606/resize/1200x675!/quality/90/?url=https%3A%2F%2Famazon-blogs-brightspot.s3.amazonaws.com%2Fab%2F7d%2F7387c5c34035af9dafce465fe433%2Famazon-org-smile-extruded-sq.jpg"); */
     background-position: center;
     background-repeat: no-repeat;
+  background-image: url('https://png.pngtree.com/thumb_back/fh260/back_our/20190621/ourmid/pngtree-chinese-style-college-entrance-examination-champion-red-poster-image_193224.jpg');
+
     background-size: cover;
     height: 100vmin;
     display: flex;

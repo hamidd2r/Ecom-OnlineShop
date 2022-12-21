@@ -1,17 +1,24 @@
-footer {
-    margin-top: 10vmax;
-    padding: 2vmax;
-    background-color: gray;
-    color: white;
-    display: flex;
-    align-items: center;
-  }
+
+
+
+.footer {
+  margin-top: 10vmax;
+  background-repeat: no-repeat;
+  padding: 2vmax;
+  background-color: gray;
+  color: white;
+  display: flex;
+  background-image: url('https://png.pngtree.com/thumb_back/fh260/back_our/20190621/ourmid/pngtree-chinese-style-college-entrance-examination-champion-red-poster-image_193224.jpg');
+  background-repeat: repeat-x;
+
+  align-items: center;
+}
+
+.leftFooter {
+  width: 20%;
+  display: flex;
   
-  .leftFooter {
-    width: 20%;
-    display: flex;
-  
-    flex-direction: column;
+  flex-direction: column;
     align-items: center;
   }
   .leftFooter > h4 {

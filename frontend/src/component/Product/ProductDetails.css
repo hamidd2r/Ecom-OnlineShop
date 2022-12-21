@@ -5,7 +5,7 @@
     padding: 6vmax;
     box-sizing: border-box;
     display: flex;
-  }
+  } 
   
   .ProductDetails > div {
     width: 100%;
@@ -28,12 +28,12 @@
   
   .detailsBlock-1 > h2 {
     color: rgb(54, 54, 54);
-    font: 600 1.6vmax "Roboto";
+    font: 600 1.9vmax "Roboto";
   }
   
   .detailsBlock-1 > p {
     color: rgba(54, 54, 54, 0.582);
-    font: 200 0.6vmax cursive;
+    font: 200 0.9vmax cursive;
   }
   
   .detailsBlock-2 {
@@ -57,7 +57,7 @@
   
   .detailsBlock-3 > h1 {
     color: rgba(17, 17, 17, 0.795);
-    font: 400 1.8vmax "Franklin Gothic Medium";
+    font: 400 1.9vmax "Franklin Gothic Medium";
     margin: 1vmax 0;
   }
   .detailsBlock-3-1 {
@@ -84,7 +84,7 @@
     text-align: center;
     justify-content: center;
     outline: none;
-    font: 400 0.8vmax "Roboto";
+    font: 400 20 "Roboto";
     color: rgba(0, 0, 0, 0.889);
   }
   
@@ -93,10 +93,10 @@
     cursor: pointer;
     color: rgb(255, 255, 255);
     transition: all 0.5s;
-    background-color: rgb(239, 46, 12);
-    font: 500 0.7vmax "Roboto";
+    background-color: rgba(239, 46, 12, 0.795);
+    font: 500 1vmax "Roboto";
     border-radius: 20px;
-    padding: 0.5vmax 2vmax;
+    padding: 0.7vmax 2vmax;
     margin: 1vmax;
 
     outline: none;
@@ -117,12 +117,12 @@
   
   .detailsBlock-4 {
     color: rgba(0, 0, 0, 0.897);
-    font: 500 1.2vmax sans-serif;
+    font: 500 1.5vmax sans-serif;
   }
   
   .detailsBlock-4 > p {
     color: rgba(0, 0, 0, 0.534);
-    font: 300 0.8vmax sans-serif;
+    font: 300 1vmax sans-serif;
   }
   
   .submitReview {
@@ -130,7 +130,7 @@
     background-color: tomato;
     font: 500 0.7vmax "Roboto";
     border-radius: 20px;
-    padding: 0.6vmax 2vmax;
+    padding: 1vmax 2vmax;
     margin: 1vmax 0;
     color: white;
     cursor: pointer;

@@ -31,11 +31,11 @@ router.route("/logout").get(logout);
 
 router.route("/password/reset/:token").put(resetPassword);
 
-router.route("/me").get(getUserDetails); //    isAuthenticatedUser,
+router.route("/me/:id").get(getUserDetails); //    isAuthenticatedUser,
 
 router.route("/password/update").put(updatePassword); //.isAuthenticatedUser,
 
-router.route("/me/update").put(updateProfile);
+router.route("/me/update/:id").put(updateProfile);
 
 router.route("/admin/users").get(getAllUser); //.
 

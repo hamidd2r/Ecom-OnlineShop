@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import './contact.css'
 
 const Contact = () => {
   const [data , setData] = useState({
@@ -38,7 +39,7 @@ const InputEvent = (event)=>{
 
       <div className="continer contact_div">
         <div className="row">
-          <div className=" col-md-6 col-10 mx-auto">
+          <div className=" data col-md-6 col-10 mx-auto">
             <form onSubmit={formSubmit}>
               <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">

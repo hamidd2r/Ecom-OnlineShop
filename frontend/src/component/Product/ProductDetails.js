@@ -11,7 +11,7 @@ import MetaData from "../layout/MetaData";
 import { addItemsToCart } from "../../actions/cartAction";
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, Rating } from "@mui/material";
 
- 
+  
 const ProductDetails = () => {
   const navigate = useNavigate()
   const { id } = useParams();

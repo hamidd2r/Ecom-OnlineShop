@@ -49,8 +49,6 @@ exports.getAdminProducts = catchAsyncErrors(async (req, res) => {
   const products = await Product.find()
 
 
-
-
   if (!products) {
     return res.status(500).json({
       success: false,

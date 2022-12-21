@@ -13,7 +13,7 @@ import { clearErrors, updateProfile } from "../../actions/userActon";
 import { UPDATE_PROFILE_RESET } from "../../constants/userConstants";
 import MetaData from '../layout/MetaData'
 
-const UpdateProfile = () => {
+const UpdateProfile = (id) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -54,7 +54,7 @@ const UpdateProfile = () => {
     if (user) {
       setName(user.name);
       setEmail(user.email);
-      setAvatar(user.avatar.url);
+      // setAvatar(user.avatar.url);
     }
 
     if (isUpdated) {

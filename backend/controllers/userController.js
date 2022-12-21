@@ -8,7 +8,7 @@ const Jwt = require('jsonwebtoken')
 const jwtKey = 'e-comm'
 const ErrorHander = require("../utils/errorhandler");
 const crypto = require('crypto');
-// const { findById } = require("../models/userModel");
+
 
 // register.........................................................
 exports.registerUser = catchAsyncErrors(async (req, res, next) => {
@@ -134,15 +134,15 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
 
   // reset password password token..........................................
 
-  const resetToken = user.getResetPasswordToken();
+  const resetToken = user.getResetPasswordToken()
+
 
   await user.save({
     validateBeforeSave: false
   });
 
-  const resetPasswordUrl = `${req.protocol}://${req.get(
-    "host"
-  )}/password/reset/${resetToken}`;
+  const resetPasswordUrl = `${process.env.FRONTEND_URL}/password/reset/${resetToken}`;
+  // const resetPasswordUrl = `${req.protocol}://${req.get("host")}/password/reset/${resetToken}`;
 
   const message = `your password reset token is : - \n \n ${resetPasswordUrl} \n \nIf you have not requested then ignore it ! `;
 
@@ -150,9 +150,8 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
     await sendEmail({
       email: user.email,
       subject: `ecommerce web password recovery`,
-      message,
+      message: message,
     });
-
     res.status(200).json({
       success: true,
       message: `email send to ${user.email} successfully`,
@@ -167,7 +166,7 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
   }
 });
 
-
+ 
 
 
 // Reset Password
@@ -202,19 +201,24 @@ exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
   user.resetPasswordToken = undefined;
   user.resetPasswordExpire = undefined;
 
+  
+
   await user.save();
   sendToken(user, 200, res);
 });
 
 // get user details
 exports.getUserDetails = catchAsyncErrors(async (req, res, next) => {
-  const user = await User.find(req.user.id); // _id
 
+
+  const user = await User.findById(req.user.id);
   res.status(200).json({
     success: true,
     user,
   });
 });
+
+
 
 // update user passwod...
 
@@ -245,27 +249,8 @@ exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
     name: req.body.name,
     email: req.body.email,
   };
-
-  // if (req.body.avatar !== "") {
-  //   const user = await User.findById(req.user.id);
-
-  //   const imageId = user.avatar.public_id;
-
-  //   await cloudinary.v2.uploader.destroy(imageId);
-
-  //   const myCloud = await cloudinary.v2.uploader.upload(req.body.avatar, {
-  //     folder: "avatars",
-  //     width: 150,
-  //     crop: "scale",
-  //   });
-
-  //   newUserData.avatar = {
-  //     public_id: myCloud.public_id,
-  //     url: myCloud.secure_url,
-  //   };   
-  // }
   //user.id
-  const user = await User.findByIdAndUpdate(req.token, newUserData, {
+  const user = await User.findByIdAndUpdate(req.params.id, newUserData, {
     new: true,
     runValidators: true,
     useFindAndModify: false,
@@ -323,7 +308,7 @@ exports.updateUserRole = catchAsyncErrors(async (req, res, next) => {
     role: req.body.role,
   };
 
-  
+
 
   await User.findByIdAndUpdate(req.params.id, newUserData, {
     new: true,

@@ -49,7 +49,7 @@ exports.paymentVerification = catchAsyncErrors(async (req, res) => {
     razorpay_signature
       
     })
-    // res.redirect(`http://localhost:3000/success?reference=${razorpay_payment_id}`)
+    res.redirect(`http://localhost:3000/success?reference=${razorpay_payment_id}`)
   } else {
     res.status(200).json({
       success: true,
