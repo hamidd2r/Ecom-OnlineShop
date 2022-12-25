@@ -21,7 +21,7 @@ const Profile = () => {
     <>
     <div className='kuchbhi'>
 
-      <MetaData title={user.name} />
+      <MetaData title="user profile" />
       <div className="profileContainer">
         <div>
           <h1>My Profile</h1>

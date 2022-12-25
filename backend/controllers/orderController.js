@@ -2,38 +2,46 @@ const Order = require('../models/OrderModel')
 const errorHandler = require("../utils/errorhandler");
 const Product = require("../models/productModel");
 const catchAsyncErrors = require("../middleware/catchAsyncError");
+const { default: mongoose } = require('mongoose');
 
 
 
 // create order 
 exports.newOrder = catchAsyncErrors(async (req, res, next) => {
-    const {
-      shippingInfo,
-      orderItems,
-      paymentInfo,
-      itemsPrice,
-      taxPrice,
-      shippingPrice,
-      totalPrice,
-    } = req.body;
+  const order = new Order({
+    _id:mongoose.Types.ObjectId(),
+    city:req.body.city,
+    shippingInfo:req.body.shippingInfo,
+    orderItems:req.body.orderItems,
+    paymentInfo:req.body.paymentInfo,
+    itemsPrice:req.body.itemsPrice,
+    taxPrice:req.body.taxPrice,
+    shippingPrice:req.body.shippingPrice,
+    totalPrice:req.body.totalPrice,
+    orderStatus:req.body.orderStatus, 
+    deliveredAt:req.body.deliveredAt,
   
-    const order = await Order.create({
-      shippingInfo,
-      orderItems,
-      paymentInfo,
-      itemsPrice,
-      taxPrice,
-      shippingPrice,
-      totalPrice,
-      paidAt: Date.now(),
-      user: req.params.id,          // for user id for order
-    });
+  });
+ 
+  if (!order) {
+    return next(new errorHandler("Order not found with this Id", 404));
+  }
+
+  order.save().then(result=>{
+    
+   res.status(201).json(result)
+  })
+  .catch(err =>{
+    console.log(err)
+    res.status(500).json({
+      error:err
+    })
+  })
+
+
   
-    res.status(201).json({
-      success: true,
-      order,
-    });
-})
+
+}) 
 
 
 

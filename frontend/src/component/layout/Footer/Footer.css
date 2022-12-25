@@ -1,80 +1,137 @@
 
 
 
-.footer {
-  margin-top: 10vmax;
-  background-repeat: no-repeat;
-  padding: 2vmax;
-  background-color: gray;
-  color: white;
-  display: flex;
-  background-image: url('https://png.pngtree.com/thumb_back/fh260/back_our/20190621/ourmid/pngtree-chinese-style-college-entrance-examination-champion-red-poster-image_193224.jpg');
-  background-repeat: repeat-x;
 
-  align-items: center;
+
+@import url('https://fonts.googleapis.com/css2?family=Yaldevi:wght@400;600&display=swap');
+body{
+  margin: 0;
+  padding: 0;
+  /* font-family: 'Yaldevi', sans-serif; */
 }
+span{
+  color: #fc5c65;
+  font-weight:900;
+ 
+}
+ 
+footer{
+  /* background: #f1f1f1; */
+  padding: 90px 0;
+  background-image: url('https://img.freepik.com/free-vector/abstract-elegant-paper-cut-banner-modern-template_1055-6400.jpg?w=2000');
 
-.leftFooter {
-  width: 20%;
+}
+ 
+.footer-container{
+  max-width: 1300px;
+  margin: auto;
+  color: white;
+  padding: 0 20px;
   display: flex;
-  
-  flex-direction: column;
-    align-items: center;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap-reverse;
+}
+ 
+.logo{
+  width: 180px;
+  color: white;
+
+}
+ 
+.social-media{
+  margin: 20px 0;
+}
+ 
+.social-media a{
+  color: white;
+  margin-right: 25px;
+  font-size: 22px;
+  text-decoration: none;
+  transition: .3s linear;
+}
+ 
+.social-media a:hover{
+  color: #fc5c65;
+}
+ 
+.right-col h1{
+  font-size: 26px;
+}
+ 
+.border{
+  width: 100px;
+  height: 4px;
+  background: #fc5c65;
+}
+ 
+.newsletter-form{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+ 
+.txtb{
+  flex: 1;
+  padding: 12px 25px;
+  font-size: 16px;
+  color: #293043;
+  background: #ddd;
+  border: none;
+  font-weight: 700;
+  outline: none;
+  border-radius: 30px;
+  min-width: 260px;
+}
+ 
+.btn{
+  padding: 12px 25px;
+
+  font-size: 16px;
+  color: #f1f1f1;
+  background: #fc5c65;
+  border: none;
+  font-weight: 700;
+  outline: none;
+  border-radius: 30px;
+  margin-left: 20px;
+  cursor: pointer;
+  transition: opacity .3s linear;
+}
+ 
+.btn:hover{
+  opacity: .7;
+}
+ 
+.page-content{
+  min-height: 100vh;
+  font-size: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+ 
+@media screen and (max-width:960px) {
+  .footer-container{
+    max-width: 600px;
   }
-  .leftFooter > h4 {
-    font-family: "Roboto";
-    font-size: 1vmax;
+  .right-col{
+    width: 100%;
+    margin-bottom: 60px;
   }
-  .leftFooter > p {
+ 
+  .left-col{
+    width: 100%;
     text-align: center;
-    font-size: 1.2vmax;
-    font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-      "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
   }
-  .leftFooter > img {
-    width: 10vmax;
-    margin: 1vmax;
-    cursor: pointer;
-  }
-  
-  .midFooter {
-    width: 60%;
-  
-    text-align: center;
-  }
-  
-  .midFooter > h1 {
-    font-size: 4vmax;
-    font-family: "Roboto";
-    color: #eb4034;
-  }
-  .midFooter > p {
-    max-width: 60%;
-    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-    margin: 1vmax auto;
-  }
-  
-  .rightFooter {
-    width: 20%;
-  
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  .rightFooter > h4 {
-    font-family: "Roboto";
-    font-size: 1.4vmax;
-    text-decoration: underline;
-  }
-  .rightFooter > a {
-    text-decoration: none;
-    font-size: 1.3vmax;
-    font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-    color: white;
-    transition: all 0.5s;
-    margin: 0.5vmax;
-  }
-  
-  .rightFooter > a:hover {
-    color: #eb4034;
-  }
+}
+ 
+ 
+@media screen and (max-width:700px){
+  .btn{
+    margin: 0;
+    width: 100%;
+    margin-top: 20px;
+    }
+}

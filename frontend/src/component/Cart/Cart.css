@@ -1,3 +1,10 @@
+.cartsection{
+  background-color: white;
+  height: 100vh;
+  width: 100vw;
+
+}
+
 .emptyCart {
     margin: auto;
     text-align: center;

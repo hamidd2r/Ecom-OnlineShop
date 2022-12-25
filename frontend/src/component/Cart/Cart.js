@@ -40,7 +40,7 @@ const Cart = () => {
 
   return (
     <>
-    <Fragment>
+    <div className="cartsection">
       {cartItems.length === 0 ?  (
         <div className="emptyCart">
 <img style={{marginTop:"100px"}} src={cartimg} alt="" height={200} />
@@ -96,7 +96,7 @@ const Cart = () => {
       )
       }
       
-    </Fragment>
+    </div>
     </>
   );
 };

@@ -8,6 +8,7 @@ const Jwt = require('jsonwebtoken')
 const jwtKey = 'e-comm'
 const ErrorHander = require("../utils/errorhandler");
 const crypto = require('crypto');
+const { default: mongoose } = require("mongoose");
 
 
 // register.........................................................
@@ -209,9 +210,13 @@ exports.resetPassword = catchAsyncErrors(async (req, res, next) => {
 
 // get user details
 exports.getUserDetails = catchAsyncErrors(async (req, res, next) => {
-
-
-  const user = await User.findById(req.user.id);
+  const user = new User({
+    _id:mongoose.Types.ObjectId(),
+    name:req.body.name,
+    email:req.body.email,
+  
+  });
+  console.log(user)
   res.status(200).json({
     success: true,
     user,

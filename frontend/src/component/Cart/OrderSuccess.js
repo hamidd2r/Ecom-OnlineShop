@@ -18,13 +18,15 @@ const OrderSuccess = () => {
 
   return (
     <>
-         <div className="orderSuccess">
+    <div className="success">
+     <div className="orderSuccess">
       <CheckIcon />
 
       <img style={{marginTop:"100px"}} src={successimg} alt="" height={200} />
       <Typography>Your order has been placed successfully </Typography>
       <p>Reference No  : <span style={{color:"tomato"}}>{referenceNum}</span></p>
       <Link to="/orders">View Orders</Link>
+    </div>
     </div>
     </>
   )

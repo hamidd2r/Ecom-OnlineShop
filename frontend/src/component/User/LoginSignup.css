@@ -1,26 +1,22 @@
-
-
 .LoginSignUpContainer {
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   max-width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
-  /* background-color: rgb(231, 231, 231); */
+  background-color: rgb(231, 231, 231);
   position: fixed;
-  background-image: url('https://t3.ftcdn.net/jpg/03/55/60/70/360_F_355607062_zYMS8jaz4SfoykpWz5oViRVKL32IabTP.jpg');
   top: 0%;
   left: 0;
 }
 
 .LoginSignUpBox {
-  background-color: antiquewhite;
-  width: 35vw;
-  height: 80vh;
+  background-color: white;
+  width: 25vw;
+  height: 70vh;
   box-sizing: border-box;
   overflow: hidden;
-  border-radius: 30px;
 }
 .login_signUp_toggle {
   display: flex;
@@ -57,8 +53,6 @@
   justify-content: space-evenly;
   height: 70%;
   transition: all 0.5s;
-  
-  
 }
 
 .signUpForm {
@@ -74,16 +68,14 @@
 .loginForm > div > input,
 .signUpForm > div > input {
   padding: 1vmax 4vmax;
-  background-color: rgba(255, 255, 255, 0.681);
   padding-right: 1vmax;
   width: 100%;
   box-sizing: border-box;
-  /* border: 1px solid rgba(0, 0, 0, 0.267); */
+  border: 0;
+  border-bottom: 2px solid red;
   border-radius: 4px;
   font: 300 0.9vmax cursive;
   outline: none;
-  border: 0px;
-  border-bottom: 1px solid #0b0b0b;
 }
 
 .loginForm > div > svg,
