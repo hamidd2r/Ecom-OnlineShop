@@ -21,9 +21,6 @@ const Navbar = () => {
 
 
 
-
-
-
   const isAuthenticated = localStorage.getItem("user")
  
   return (
