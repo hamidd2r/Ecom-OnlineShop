@@ -2,7 +2,20 @@ const app = require("./app");
 const cloudinary = require('cloudinary')
 const connectDatabase = require("./config/database");
 const cors = require("cors")
+const { MongoClient } = require('mongodb');
 const dotenv = require('dotenv')
+
+const uri = process.env.MONGO_DB_URI;
+const client = new MongoClient(uri);
+
+app.get("/items/:my_item", async (req, res) => {
+    let my_item = req.params.my_item;
+    let item = await client.db("my_db")
+                .collection("my_collection")
+                .findOne({my_item: my_item})
+
+    return res.json(item)
+})
 
 
 
