@@ -43,11 +43,7 @@ app.all('*', (req,res) => {
 })
 
 //Connect to the database before listening
-connectDB().then(() => {
-    app.listen(PORT, () => {
-        console.log("listening for requests");
-    })
-})
+
 
 // fileupload cloudinary 
 
