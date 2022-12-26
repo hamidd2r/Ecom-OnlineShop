@@ -1,13 +1,17 @@
 import React from 'react'
 import ErrorIcon from '@mui/icons-material/Error';
-
+import "./NotFound.css";
+import { Typography } from '@mui/material';
+import { Link } from 'react-router-dom';
 const NotFound = () => {
   return (
     <>
-  <div style={{textAlign:"center" , justifyItems:"center" , marginTop:"200px" , color:"red" , fontSize:"40px"}}> pgae not Found </div>
-  <div style={{textAlign:"center" , color:"red" , size:"100px"}}>
-  <h1>  <ErrorIcon/></h1>
-  </div>
+   <div className="PageNotFound">
+      <ErrorIcon />
+
+      <Typography>Page Not Found </Typography>
+      <Link to="/">Home</Link>
+    </div>
     </>
   
 
@@ -16,4 +20,4 @@ const NotFound = () => {
   )
 }
 
-export default NotFound
+export default NotFound 

@@ -32,11 +32,7 @@ exports.registerUser = catchAsyncErrors(async (req, res, next) => {
   const user = await User.create({
     name,
     email,
-    password,
-    avatar: {
-      public_id: "this is simple id ",
-      url: "profilePicUrl",
-    },
+    password
   });
 
   const result = await user.save();
@@ -127,7 +123,7 @@ exports.logout = catchAsyncErrors(async (req, res, next) => {
 exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
   const user = await User.findOne({
     email: req.body.email
-  });
+  }); 
 
   if (!user) {
     return next(new ErrorHander("user not found ", 404));
@@ -135,7 +131,7 @@ exports.forgotPassword = catchAsyncErrors(async (req, res, next) => {
 
   // reset password password token..........................................
 
-  const resetToken = user.getResetPasswordToken()
+  const resetToken = user.getResetPasswordToken() 
 
 
   await user.save({
@@ -216,7 +212,7 @@ exports.getUserDetails = catchAsyncErrors(async (req, res, next) => {
     email:req.body.email,
   
   });
-  console.log(user)
+ 
   res.status(200).json({
     success: true,
     user,
@@ -250,16 +246,13 @@ exports.updatePassword = catchAsyncErrors(async (req, res, next) => {
 
 // update User Profile
 exports.updateProfile = catchAsyncErrors(async (req, res, next) => {
-  const newUserData = {
+  const user = {
+    _id:mongoose.Types.ObjectId(),
     name: req.body.name,
     email: req.body.email,
   };
-  //user.id
-  const user = await User.findByIdAndUpdate(req.params.id, newUserData, {
-    new: true,
-    runValidators: true,
-    useFindAndModify: false,
-  });
+
+ 
 
   res.status(200).json({
     success: true,

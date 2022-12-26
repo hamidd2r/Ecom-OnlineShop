@@ -9,20 +9,18 @@ import { Slider, Typography } from "@mui/material";
 import MetaData from "../layout/MetaData";
 
 const categories = [
-  "laptop",
-  "shoes",
-  "table",
-  "mobile",
-  "Shirt",
-  "t-Shirt",
-  "Video Games",
-  "Headphones",
-  "Mixer Grinders",
-  "Smart Technology",
-  "Home And Kichen",
-  "Musical Instruments",
-  "Industrial & Scientific"
-];
+  ["laptop","https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/inspiron-notebooks/16-5620/media-gallery/notebook-inspiron-16-5620-2-in-1-gy-fpr-gallery-4.psd?fmt=png-alpha&pscan=auto&scl=1&hei=402&wid=598&qlt=100,1&resMode=sharp2&size=598,402&chrss=full"],
+  ["shoes","https://rukminim1.flixcart.com/image/612/612/xif0q/shoe/v/a/o/-original-imagg6reznfbmjfe.jpeg?q=70"],
+  ["table","https://www.shutterstock.com/image-illustration/folding-table-3d-illustration-on-260nw-1922420468.jpg"],
+  ["mobile","https://m.media-amazon.com/images/I/71KCwNV6MuL._SL1500_.jpg"],
+  ["Shirt","https://5.imimg.com/data5/LQ/ZC/WF/SELLER-61376355/men-white-shirts-250x250.jpg"],
+  ["t-Shirt","https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/best-mens-white-t-shirts-1-1634727108.jpg"],
+  ["Video Games","https://media.istockphoto.com/id/641123366/photo/joystick-on-white-background.jpg?s=612x612&w=0&k=20&c=t51G-NaM9pO-f0wqf7unzUFhK-DeaH8_W6ZIYeiGqx4="],
+  ["Mixer Grinders","https://cdn.shopify.com/s/files/1/0569/0916/8832/products/2_6f1d69fa-9920-454e-89d3-3e4199bba963_1024x1024@2x.jpg?v=1623932482"],
+  ["Smart Technology","https://media.istockphoto.com/id/841828528/vector/night-skyscrapers-city.jpg?s=170667a&w=is&k=20&c=9W5uBKmaB4GjS2p89GyIjfyOKtTc1v6zSkMebQxvM5I="],
+  ["Home And Kichen","https://images.thdstatic.com/lifestyleimages/1024x682/ed6b4ae8-6b05-4d09-8cb1-57cc5040bdba58.jpeg"],
+  
+];  
 
 const Products = () => {
   const dispatch = useDispatch();
@@ -58,28 +56,34 @@ const Products = () => {
       </div>
 
       <div className="filterBox">
+       
+        {/* <p>Categories</p> */}
+        <ul className="categoryBox">
+          {categories.map((category) => (
+            <li
+              className="category-link"
+              key={category[0]}
+              onClick={() => setCategory(category[0])}
+            >
+              
+              <img className="images" src={category[1]} /><br />
+              {category[0]}
+            </li>
+          ))}
+        </ul>
+
+
         <Typography>Price</Typography>
         <Slider
           value={price}
           onChange={priceHandler}
-          valueLabelDisplay="on"
+          valueLabelDisplay="auto"
+
           aria-label="range-slider"
           min={0}
           max={100000}
         ></Slider>
 
-        <Typography>Categories</Typography>
-        <ul className="categoryBox">
-          {categories.map((category) => (
-            <li
-              className="category-link"
-              key={category}
-              onClick={() => setCategory(category)}
-            >
-              {category}
-            </li>
-          ))}
-        </ul>
 
         {/* rating for..7:14minute */}
 

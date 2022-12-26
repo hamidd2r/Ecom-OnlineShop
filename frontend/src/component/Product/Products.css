@@ -1,3 +1,9 @@
+
+body {
+  height: 100vh;
+  width: 100vw;
+}
+
 .productsHeading {
     margin: 2vmax auto;
     width: 15vw;
@@ -67,14 +73,29 @@
   }
   
   .filterBox {
-    width: 10vmax;
+    width: 11vmax;
     position: absolute;
-    top: 10vmax;
-    left: 4vmax;
+    top: 2vmax;
+    left: 0.5vmax;
+    right: 2vmax;
+    color: black;
+    font-size: 20px;
+  
   }
+
+  
   
   .categoryBox {
-    padding: 0%;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: row;
+    
+  }
+
+  .images {
+    height: 90px;
+    width: 100px;
+    border-radius: 50px;
   }
   
   .category-link {
