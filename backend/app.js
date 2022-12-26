@@ -7,10 +7,7 @@ const fileupload = require('express-fileupload')
 const path = require('path')
 const dotenv = require('dotenv')
 
-// config
-// config
-
-
+// Config
 dotenv.config({
   path: "backend/config/config.env"
 });

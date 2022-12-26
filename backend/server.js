@@ -1,8 +1,8 @@
 const app = require("./app");
 const cloudinary = require('cloudinary')
 const connectDatabase = require("./config/database");
-const dotenv = require('dotenv')
 const cors = require("cors")
+const dotenv = require('dotenv')
 
 
 
@@ -18,10 +18,12 @@ process.on("uncaughtException" ,(err)=>{
     process.exit(1) 
 })
 
-// config
+// Config
 dotenv.config({
   path: "backend/config/config.env"
 });
+
+
 
 // database
 connectDatabase();
