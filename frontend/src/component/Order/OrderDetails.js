@@ -12,7 +12,7 @@ const OrderDetails = () => {
     const { id }   = useParams();
     const { order, error } = useSelector((state) => state.orderDetails);
     const dispatch = useDispatch()
-// console.log(order);
+
     useEffect(()=>{
 
         if(error) {
@@ -30,11 +30,14 @@ const OrderDetails = () => {
           <MetaData title="Order Details" />
           <div className="orderDetailsPage">
             <div className="orderDetailsContainer">
-              <Typography component="h1">
+              <Typography style={{textAlign:"center"}} component="h1">
                 Order #{order && order._id}
               </Typography>
-              <Typography>Shipping Info</Typography>
-              <div className="orderDetailsContainerBox">
+              <div class="container">
+  <div class="row">
+    <div class=" col-md-4">
+    <Typography>Shipping Info</Typography>
+ <div className="orderDetailsContainerBox">
                 <div>
                   <p>Name:</p>
                   <p>Md Hamid Ali</p>
@@ -53,8 +56,12 @@ const OrderDetails = () => {
                    </span>
                 </div>
               </div>
-              <Typography>Payment</Typography>
-              <div className="orderDetailsContainerBox">
+
+    </div>
+    <div class=" col-md-4">
+
+    <Typography>Payment</Typography>
+     <div className="orderDetailsContainerBox">
                 <div>
                   <p
                     className={
@@ -76,7 +83,10 @@ const OrderDetails = () => {
                   <span> {order && order.totalPrice && order.totalPrice ? (<span>{order.totalPrice}</span> ):('') } </span>
                 </div>
               </div>
-              <Typography>Order Status</Typography>
+    </div>
+    <div class=" col-md-4">
+
+    <Typography>Order Status</Typography>
               <div className="orderDetailsContainerBox">
                 <div>
                   <p
@@ -90,6 +100,10 @@ const OrderDetails = () => {
                   </p>
                 </div>
               </div>
+    </div>
+  </div>
+</div>
+
             </div>
             <div className="orderDetailsCartItems">
               <Typography>Order Items:</Typography>

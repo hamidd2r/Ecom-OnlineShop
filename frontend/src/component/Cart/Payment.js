@@ -7,7 +7,7 @@ import withReactContent from 'sweetalert2-react-content'
 import { useNavigate } from 'react-router-dom';
 
 const MySwal = withReactContent(Swal)
- 
+     
 
 const Payment = () => {
   const navigate = useNavigate()

@@ -20,7 +20,7 @@ app.get("/items/:my_item", async (req, res) => {
 
 
 app.use(cors())
-const Stripe = require('strip')(process.env.SECRET_KEY)
+const Stripe = require('strip')(process.env.SECRET_KEY) 
 
 
 // handling uncaught exception
