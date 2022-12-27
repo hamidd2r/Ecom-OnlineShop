@@ -25,7 +25,7 @@ const Footer = () => {
         <div class="right-col">
           <h1>Our Online Shop</h1>
           <div class="border"></div>
-          <p>Enter Your Email to get our news and updates.</p>
+          <p>Enter Your Email to get our updates.</p>
           <form action="" class="newsletter-form">
             <input type="text" class="txtb" placeholder="Enter Your Email"/>
             <input type="submit" class="btn" value="submit"/>

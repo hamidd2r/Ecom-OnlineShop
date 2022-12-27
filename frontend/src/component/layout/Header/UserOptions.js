@@ -21,7 +21,6 @@ const UserOptions = ({ user }) => {
   const dispatch = useDispatch();
 
   const options = [
-    { icon: <DashboardIcon />, name: "Dashboard", func: dashboard },
     { icon: <ListAltIcon />, name: "Orders", func: orders },
     { icon: <PersonIcon />, name: "Profile", func: account },
     {
@@ -36,13 +35,13 @@ const UserOptions = ({ user }) => {
     { icon: <ExitToAppIcon />, name: "Logout", func: logoutUser },
   ];
 
-  // if (user.role === "admin") {
-  //   options.unshift({
-  //     icon: <DashboardIcon />,
-  //     name: "Dashboard",
-  //     func: dashboard,
-  //   });
-  // }
+  if (user.role === "admin") {
+    options.unshift({
+      icon: <DashboardIcon />,
+      name: "Dashboard",
+      func: dashboard,
+    });
+  }
 
   function dashboard() {
     navigate("/admin/dashboard");
