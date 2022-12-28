@@ -4,7 +4,7 @@ import axios from 'axios'
 import StripeCheckout from 'react-stripe-checkout';
 import Swal from 'sweetalert2'
 import withReactContent from 'sweetalert2-react-content'
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';                              // stripe 
 
 const MySwal = withReactContent(Swal)
      
@@ -18,6 +18,8 @@ const Payment = () => {
     name:"headphone",
     price: 10,
   })
+
+  
 
 
   const priceForStripe = product.price*100;

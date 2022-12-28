@@ -7,6 +7,8 @@ import ProductCard from "../Home/ProductCard";
 import Pagination from "react-js-pagination";
 import { Slider, Typography } from "@mui/material";
 import MetaData from "../layout/MetaData";
+import Carousel from 'react-multi-carousel';
+import 'react-multi-carousel/lib/styles.css';
 
 const categories = [
   ["laptop","https://i.dell.com/is/image/DellContent/content/dam/ss2/product-images/dell-client-products/notebooks/inspiron-notebooks/16-5620/media-gallery/notebook-inspiron-16-5620-2-in-1-gy-fpr-gallery-4.psd?fmt=png-alpha&pscan=auto&scl=1&hei=402&wid=598&qlt=100,1&resMode=sharp2&size=598,402&chrss=full"],
@@ -28,6 +30,23 @@ const Products = () => {
   const [price, setPrice] = useState([0, 100000]);
   const [category, setCategory] = useState("");
   const [rating, setRating] = useState(0);
+  const responsive = {
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 10,
+      slidesToSlide: 3 // optional, default to 1.
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2,
+      slidesToSlide: 2 // optional, default to 1.
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 2,
+      slidesToSlide: 2 // optional, default to 1.
+    }
+  };
   // const { id } = useParams();
   const { products, productsCount, resultPerPage, filterProductsCount } =
     useSelector((state) => state.products);
@@ -49,18 +68,28 @@ const Products = () => {
   return (
     <>
     <MetaData title="PRODUCTS E-COM"/>
-      <h2 className="productsHeading">Products</h2>
-      <div className="products">
-        {products &&
-          products.map((product) => <ProductCard product={product} />)}
-      </div>
+<div className="my-slider">
 
-      <div className="filterBox">
-       
-        {/* <p>Categories</p> */}
-        <ul className="categoryBox">
-          {categories.map((category) => (
-            <li
+    <Carousel
+  swipeable={false}
+  draggable={false}
+  showDots={true}
+  responsive={responsive}
+  ssr={true} // means to render carousel on server-side.
+  infinite={true}
+  //autoPlay={this.props.deviceType !== "mobile" ? true : false}
+  autoPlaySpeed={1000}
+  keyBoardControl={true}
+  customTransition="all .5"
+  transitionDuration={500}
+  containerClass="carousel-container"
+  removeArrowOnDeviceType={["tablet"]}
+  //deviceType={this.props.deviceType}
+  dotListClass="custom-dot-list-style"
+  itemClass="carousel-item-padding-40-px"
+>
+{categories.map((category) => (
+  <div
               className="category-link"
               key={category[0]}
               onClick={() => setCategory(category[0])}
@@ -68,11 +97,17 @@ const Products = () => {
               
               <img className="images" src={category[1]} /><br />
               {category[0]}
-            </li>
-          ))}
-        </ul>
+              </div>
+  ))}
+</Carousel>
+</div>
+      <h2 className="productsHeading">Products</h2>
+      <div className="products">
+        {products &&
+          products.map((product) => <ProductCard product={product} />)}
+      </div>
 
-
+      <div className="filterBox">
         <Typography>Price</Typography>
         <Slider
           value={price}
@@ -84,22 +119,6 @@ const Products = () => {
           max={100000}
         ></Slider>
 
-
-        {/* rating for..7:14minute */}
-
-        <fieldset>
-          <Typography component="legend">Rating Above</Typography>
-          <Slider
-            value={rating}
-            onChange={(e, newRating) => {
-              setRating(newRating);
-            }}
-            aria-labelledby="continuous-slider"
-            min={0}
-            max={5}
-            valueLabelDisplay="auto"
-          />
-        </fieldset>
       </div>
 
       {resultPerPage < productsCount && (

@@ -4,9 +4,10 @@ const Payment = require("../models/PaymentModel");
 const crypto = require("crypto");
 const Razorpay = require('razorpay');
 var instance = new Razorpay({
-  key_id: 'rzp_test_Ai3D9ADwQQvYN1',
-  key_secret: 'x4jYXrel58KdiSHNWudhbVyN'
+  key_id: process.env.RAZORPAY_KEY_ID,
+  key_secret: process.env.RAZORPAY_KEY_SECRET,
 })
+console.log(instance)
 
 
 exports.checkout = catchAsyncErrors(async (req, res) => {
@@ -49,10 +50,13 @@ exports.paymentVerification = catchAsyncErrors(async (req, res) => {
     razorpay_signature
       
     })
-    res.redirect(`http://localhost:4000/success?reference=${razorpay_payment_id}`)
+    res.redirect(`http://localhost:3000/success?reference=${razorpay_payment_id}`)
   } else {
     res.status(200).json({
       success: true,
+      
+     
+      
     })
   }
 })

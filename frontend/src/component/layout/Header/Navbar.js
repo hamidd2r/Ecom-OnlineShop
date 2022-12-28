@@ -45,7 +45,7 @@ const Navbar = () => {
         <li className="nav-item">
           <NavLink className="nav-link" to="/contact">Contact</NavLink>
         </li>
-        <li class="nav-item dropdown">
+        {/* <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             More Products
           </a>
@@ -57,7 +57,7 @@ const Navbar = () => {
             <li><a class="dropdown-item" href="/offer">Offer</a></li>
             <li><hr class="dropdown-divider"/></li>
           </ul>
-        </li>
+        </li> */}
       
         <li style={{marginLeft:"500px"}} className="nav-item ">
           <NavLink className="nav-link" to="/account"><AccountCircleIcon/></NavLink>

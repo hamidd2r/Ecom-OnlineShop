@@ -1,3 +1,12 @@
+.my-slider >.react-multi-carousel-list >.react-multi-carousel-track >.react-multi-carousel-item{
+
+  width:148px !important;
+}
+.my-slider{
+  padding-left: 100px;
+  padding-right: 100px;
+}
+
 
 
 .productsHeading {
@@ -71,7 +80,7 @@
   .filterBox {
     width: 11vmax;
     position: absolute;
-    top: 2vmax;
+    top: 15vmax;
     left: 0.5vmax;
     right: 2vmax;
     color: black;
@@ -116,11 +125,39 @@
       position: static;
       margin: auto;
     }
+    .my-slider{
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+
+    .my-slider >.react-multi-carousel-list>.react-multiple-carousel__arrow{
+      min-width: 20px !important;
+      }
+      .my-slider >.react-multi-carousel-list >.react-multi-carousel-track >.react-multi-carousel-item{
+
+        width:162px !important;
+      }
   
     .page-link {
       font: 300 1.7vmax "Roboto";
     }
+
     .category-link {
       font: 400 1.8vmax "Roboto";
+      display: block;
+    }
+
+   
+  }
+
+ 
+
+  @media screen and (max-width: 600px) {
+    
+    .paginationBox {
+      width: 10px;
+   
+      
     }
   }
+
