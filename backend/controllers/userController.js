@@ -11,64 +11,30 @@ const crypto = require('crypto');
 const { default: mongoose } = require("mongoose");
 
 
-// register.........................................................
+// Register a User
 exports.registerUser = catchAsyncErrors(async (req, res, next) => {
-  // const user = new User(req.body)
-
-  User.findOne({
-    email: req.body.email,
-  }).exec((error, user) => {
-    if (user)
-      return res.status(400).json({
-        message: "user already registered",
-      });
-  })
-  const {
-    name,
-    email,
-    password
-  } = req.body;
+  const { name, email, password } = req.body;
 
   const user = await User.create({
     name,
     email,
-    password
+    password,
   });
 
-  const result = await user.save();
-
-  Jwt.sign({
-    result
-  }, jwtKey, {
-    expiresIn: "2h"
-  }, (err, token) => {
-    if (err) {
-      res.send({
-        result: 'something went wrong pls try after sometime'
-      })
-    }
-    res.send({
-      result,
-      auth: token
-    })
-  })
+  sendToken(user, 201, res);
 });
 
-// login user....................................................
-
+// Login User
 exports.loginUser = catchAsyncErrors(async (req, res, next) => {
-  // const user = new User(req.body);
-  const {
-    email,
-    password
-  } = req.body;
-  if ((!email || !password)) {
+  const { email, password } = req.body;
+
+  // checking if user has given password and email both
+
+  if (!email || !password) {
     return next(new ErrorHander("Please Enter Email & Password", 400));
   }
 
-  const user = await User.findOne({
-    email
-  }).select("+password");
+  const user = await User.findOne({ email }).select("+password");
 
   if (!user) {
     return next(new ErrorHander("Invalid email or password", 401));
@@ -80,29 +46,8 @@ exports.loginUser = catchAsyncErrors(async (req, res, next) => {
     return next(new ErrorHander("Invalid email or password", 401));
   }
 
-
-  if (user) {
-    Jwt.sign({
-      user
-    }, jwtKey, {
-      expiresIn: "2h"
-    }, (err, token) => {
-      if (err) {
-        res.send({
-          result: 'something went wrong pls try after sometime'
-        })
-      }
-      res.send({
-        user,
-        auth: token
-      })
-    })
-  } else {
-    res.send({
-      result: 'No User '
-    })
-  }
-})
+  sendToken(user, 200, res);
+});
 
 // logout..................................................
 

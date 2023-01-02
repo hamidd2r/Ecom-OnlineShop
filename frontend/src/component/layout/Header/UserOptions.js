@@ -22,8 +22,8 @@ const UserOptions = ({ user }) => {
 
   const options = [
     { icon: <DashboardIcon />, name: "Dashboard", func: dashboard },
-    { icon: <ListAltIcon />, name: "Orders", func: orders },
     { icon: <PersonIcon />, name: "Profile", func: account },
+    { icon: <ListAltIcon />, name: "Orders", func: orders },
     {
       icon: (
         <ShoppingCartIcon

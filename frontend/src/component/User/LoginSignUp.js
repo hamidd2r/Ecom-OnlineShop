@@ -11,11 +11,11 @@ import avatarPreview from '../../images/hamid.jpg'
 import {useDispatch , useSelector} from 'react-redux';
 import {clearErrors , login , register} from '../../actions/userActon'
 
-const LoginSignUp = (location) => {
+const LoginSignUp = () => {
   const dispatch = useDispatch(); 
   const navigate = useNavigate();
 
-  const {loading , isAuthenticated} = useSelector((state) => state.user);
+  const {isAuthenticated} = useSelector((state) => state.user);
 
     const loginTab = useRef(null)
     const registerTab = useRef(null)
@@ -129,7 +129,7 @@ const LoginSignUp = (location) => {
                      onChange={(e) => setLoginPassword(e.target.value)}
                       />
                     </div>
-                    <Link to="/password/forgot"> Forgot Password ?</Link>
+                    <Link to="/password/forgot"> Forgot Password.. ?</Link>
                     <button className='loginbtn' type='submit'><LoginIcon/></button>
                     {/* <input type="submit" value={<LoginIcon/>} className='loginbtn' /> */}
                 </form>

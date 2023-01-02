@@ -17,8 +17,6 @@ app.get("/items/:my_item", async (req, res) => {
     return res.json(item)
 })
 
-
-
 app.use(cors())
 const Stripe = require('strip')(process.env.SECRET_KEY) 
 

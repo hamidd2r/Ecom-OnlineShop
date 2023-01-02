@@ -55,9 +55,9 @@ export const login = (email, password) => async (dispatch) => {
             email,
             password
         }, config);
-        if(data.auth){
+        if(data.token){
             localStorage.setItem("user", JSON.stringify(data.user))
-            localStorage.setItem("token", JSON.stringify(data.auth))
+            localStorage.setItem("token", JSON.stringify(data.token))
             
         }
 
@@ -263,6 +263,7 @@ export const resetPassword = (token, passwords) => async (dispatch) => {
       passwords,
       config
     );
+    console.log(data)
 
     dispatch({ type: RESET_PASSWORD_SUCCESS, payload: data.success });
   } catch (error) {

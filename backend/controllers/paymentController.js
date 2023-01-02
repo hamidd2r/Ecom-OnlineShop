@@ -3,11 +3,13 @@ const Payment = require("../models/PaymentModel");
 //const instance = require("../server");
 const crypto = require("crypto");
 const Razorpay = require('razorpay');
+
+
 var instance = new Razorpay({
   key_id: process.env.RAZORPAY_KEY_ID,
   key_secret: process.env.RAZORPAY_KEY_SECRET,
 })
-console.log(instance)
+
 
 
 exports.checkout = catchAsyncErrors(async (req, res) => {
@@ -59,4 +61,48 @@ exports.paymentVerification = catchAsyncErrors(async (req, res) => {
       
     })
   }
+})
+
+
+
+//................................................................................................
+
+
+exports.createEvent = catchAsyncErrors(async (req, res) => {
+  
+  const { event_type, provider_message, provider_name, status } = req.body.event;
+
+
+  const orderId = req.params.order_id;
+
+  const order = { 
+    order_id: orderId,
+    user_id: 'fc741db0a2968c39d9c2a5cc75b05370',
+    product_id: 'b31d032cfdcf47a399990a71e43c5d2a',
+    price: '20.99',
+    amount: '2',
+    tax: '3.8',
+    total: '45.78',
+  };
+
+  
+ 
+  const data = {
+    event_type,           // ex: 'fulfilled'
+    provider_message,     // ex: 'your order may take two days on the way'
+    provider_name,        // ex: 'FedEx'
+    status,               // ex: 'safe'
+    order,                // the order data
+  };
+
+
+  try {
+    const result = await sendWebhookMessage(`order.${event_type}`, data)
+    res.status(201).json({ message: 'Event has been created successfully', result })
+  } catch (error) {
+    console.log(error);
+    res.status(error.status).json({ message: error.message });
+  }
+
+
 })
