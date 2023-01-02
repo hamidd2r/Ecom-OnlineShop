@@ -20,3 +20,8 @@
       .nav-link {
         color: black !important;
       } */
+
+
+      .right-side {
+     display: flex;
+      }

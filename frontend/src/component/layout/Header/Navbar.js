@@ -59,11 +59,11 @@ const Navbar = () => {
           </ul>
         </li> */}
       
-        <li style={{marginLeft:"500px"}} className="nav-item ">
+        <li className="nav-item ">
           <NavLink className="nav-link" to="/account"><AccountCircleIcon/></NavLink>
         </li>
 
-        <li style={{marginLeft:"50px"}} className="nav-item ">
+        <li className="nav-item ">
           <NavLink  className="nav-link" to="/cart"><ShoppingCartSharpIcon/></NavLink>
         </li>
       </ul>
