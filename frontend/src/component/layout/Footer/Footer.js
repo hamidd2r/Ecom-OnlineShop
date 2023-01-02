@@ -1,5 +1,6 @@
 import React from 'react'
 import './Footer.css'
+import appStore from "../../../images/pic5.png";
 import FacebookIcon from '@mui/icons-material/Facebook';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import GitHubIcon from '@mui/icons-material/GitHub';
@@ -12,7 +13,7 @@ const Footer = () => {
       <div className="leftFooter">
         <h4>DOWNLOAD OUR APP</h4>
         <p>Download App for Android and IOS mobile phone</p>
-        <img src={playStore} alt="playstore" />
+       
         <img src={appStore} alt="Appstore" />
       </div>
 
