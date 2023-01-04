@@ -181,7 +181,7 @@ useEffect(() => {
         )
       }
       
-      <ReviewCard/>
+      {/* <ReviewCard/> */}
     </>
   )
 }

@@ -66,7 +66,7 @@ const ConfirmOrder = () => {
       prefill: {
           "name": "hamid",
           "email": "hamid.ali@example.com",
-          "contact": "8988766554"
+          "contact": "06272267299"
       },
       notes: {
           "address": "Razorpay Corporate Office"

@@ -5,6 +5,7 @@
     padding: 6vmax;
     box-sizing: border-box;
     display: flex;
+    margin-top: -25px;
   } 
   
   .ProductDetails > div {
@@ -122,13 +123,13 @@
   
   .detailsBlock-4 > p {
     color: rgba(0, 0, 0, 0.534);
-    font: 300 1vmax sans-serif;
+    font: 300 1.4vmax sans-serif;
   }
   
   .submitReview {
     border: none;
     background-color: tomato;
-    font: 500 0.7vmax "Roboto";
+    font: 500 0.9vmax "Roboto";
     border-radius: 20px;
     padding: 1vmax 2vmax;
     margin: 1vmax 0;
@@ -202,6 +203,7 @@
   @media screen and (max-width: 600px) {
     .ProductDetails {
       flex-direction: column;
+      margin-top: 0px;
       height: unset;
     }
   

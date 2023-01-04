@@ -5,7 +5,7 @@ const crypto = require("crypto");
 const Razorpay = require('razorpay');
 
 
-var instance = new Razorpay({
+const instance = new Razorpay({
   key_id: process.env.RAZORPAY_KEY_ID,
   key_secret: process.env.RAZORPAY_KEY_SECRET,
 })
@@ -13,10 +13,10 @@ var instance = new Razorpay({
 
 
 exports.checkout = catchAsyncErrors(async (req, res) => {
-  var options = {
-    amount: Number(req.body.amount * 100),
-    currency: "INR",
-    receipt: "order_rcptid_11"
+  const options = {
+    amount:Number(req.body.amount),
+    currency:"INR",
+    event:"payment.authorized"
   };
   const order = await instance.orders.create(options, function (err, order) {
     res.status(200).json({
