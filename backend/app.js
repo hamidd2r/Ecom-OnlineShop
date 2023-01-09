@@ -32,11 +32,11 @@ app.use('/api/v1' , payment)
 app.get('/api/getkey' , (req, res)=> res.status(200).json({key:'rzp_test_Ai3D9ADwQQvYN1'}))
 
 
-// app.use(express.static(path.join(__dirname , "../frontend/build")));
+app.use(express.static(path.join(__dirname , "../frontend/build")));
 
-// app.get("*" , (req, res) =>{
-//     res.sendFile(path.resolve(__dirname, "../frontend/build/index.html"))
-// })
+app.get("*" , (req, res) =>{
+    res.sendFile(path.resolve(__dirname, "../frontend/build/index.html"))
+})
 
 // middleware
 app.use(errorMiddleware)
