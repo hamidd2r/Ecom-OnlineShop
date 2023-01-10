@@ -1,0 +1,49 @@
+{
+    "entity": "event",
+    "account_id": "acc_Kt43fDSvm3gl1d",
+    "event": "payment.captured",
+    "contains": [
+        "payment"
+    ],
+    "payload": {
+        "payment": {
+            "entity": {
+                "id": "pay_L29Ui7GDjx1eet",
+                "entity": "payment",
+                "amount": 2970000,
+                "currency": "INR",
+                "status": "captured",
+                "order_id": "order_L29UZuaPYDi5Ei",
+                "invoice_id": null,
+                "international": false,
+                "method": "netbanking",
+                "amount_refunded": 0,
+                "refund_status": null,
+                "captured": true,
+                "description": "this is transection of ecom ",
+                "card_id": null,
+                "bank": "KKBK",
+                "wallet": null,
+                "vpa": null,
+                "email": "hamid.ali@example.com",
+                "contact": "+918988766554",
+                "notes": {
+                    "address": "Razorpay Corporate Office"
+                },
+                "fee": 70092,
+                "tax": 10692,
+                "error_code": null,
+                "error_description": null,
+                "error_source": null,
+                "error_step": null,
+                "error_reason": null,
+                "acquirer_data": {
+                    "bank_transaction_id": "2665929"
+                },
+                "created_at": 1673283336,
+                "base_amount": 2970000
+            }
+        }
+    },
+    "created_at": 1673283340
+}

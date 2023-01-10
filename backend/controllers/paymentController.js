@@ -69,13 +69,13 @@ exports.paymentVerification = catchAsyncErrors(async (req, res) => {
   const isAuthenticated = expectedSignature === razorpay_signature;
 
   if (isAuthenticated) {
-    await Payment.create({
+    await Payment.create({ 
       razorpay_order_id,
       razorpay_payment_id,
       razorpay_signature
 
     })
-    res.redirect(`https://drab-crow-boot.cyclic.app/success?reference=${razorpay_payment_id}`)
+    res.redirect(`http://localhost:3000/success?reference=${razorpay_payment_id}`)
   } else {
     res.status(200).json({
       success: true,

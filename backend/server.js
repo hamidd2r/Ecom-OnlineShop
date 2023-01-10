@@ -2,6 +2,11 @@ const app = require("./app");
 const cloudinary = require('cloudinary')
 const connectDatabase = require("./config/database");
 const cors = require("cors")
+const Capture = require("./models/captureModel");
+
+
+const crypto = require('crypto')
+
 const {
   MongoClient
 } = require('mongodb');
@@ -38,6 +43,40 @@ dotenv.config({
   path: "backend/config/config.env"
 });
 
+// **************************
+app.post('/verification', async(req, res) => {
+  const secret = 'hamidali123'
+  const {account_id,event}=req.body;
+
+  const capture = await Capture.create({
+    account_id,
+    event
+    
+  });
+
+  console.log(capture)
+
+  const shasum = crypto.createHmac('sha256', secret)    
+  shasum.update(JSON.stringify(req.body))        
+  const digest = shasum.digest('hex')
+
+  console.log(digest, req.headers['x-razorpay-signature'])
+
+  if (digest === req.headers['x-razorpay-signature']) {
+    console.log('request is legit')
+    //process it 
+    res.status(201).json({
+      success: true,
+      capture,
+    });
+
+  } else {
+    res.status(201).json({
+      message:"error "
+     });   
+  }
+})
+// **********************************
 
 
 // database
@@ -53,10 +92,8 @@ const connectDB = async () => {
 }
 
 //Routes go here
-app.all('*', (req, res) => {
-  res.json({
-    "every thing": "is awesome"
-  })
+app.get('/', (req, res) => {
+  res.send("home page")
 })
 
 //Connect to the database before listening
